@@ -3,5 +3,28 @@ This design connects one side of an esp32 Dev Module (ESP32-LEFT) to a LCD touch
 
 Used with display http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520
 
+The hardware connections (for LVGL driver) is supported by these definitions in 'sdconfig'
+
+    CONFIG_LV_TFT_DISPLAY_SPI_VSPI=y
+    CONFIG_LV_DISP_SPI_MOSI=4
+    # CONFIG_LV_DISPLAY_USE_SPI_MISO is not set
+    CONFIG_LV_DISP_SPI_CLK=17
+    CONFIG_LV_DISP_SPI_CS=19
+    CONFIG_LV_DISP_PIN_DC=5
+    CONFIG_LV_DISP_PIN_RST=18
+    CONFIG_LV_TOUCH_DRIVER_PROTOCOL_SPI=y
+    # CONFIG_LV_TOUCH_CONTROLLER_SPI_HSPI is not set
+    CONFIG_LV_TOUCH_CONTROLLER_SPI_VSPI=y
+
+    #
+    # Touchpanel (XPT2046) Pin Assignments
+    #
+    CONFIG_LV_TOUCH_SPI_MISO=2
+    CONFIG_LV_TOUCH_SPI_MOSI=4
+    CONFIG_LV_TOUCH_SPI_CLK=17
+    CONFIG_LV_TOUCH_SPI_CS=16
+    CONFIG_LV_TOUCH_PIN_IRQ=15
+    # end of Touchpanel (XPT2046) Pin Assignments
+
 ![Top Side](/assets/Lcd3_5ConnectTop.png)
 ![Bottom Side](/assets/Lcd3_5ConnectBottom.png)
