@@ -5,4 +5,5 @@ This design connects one side of an esp32 Dev Module (ESP32-RIGHT) to JST ZH 1.5
 3. 1 each 4 pin GVSS connector (serial port)
 4. 2 each 5 pin GVSSS connectors (thumb joystick)
 
-![Top Side](/assets/RightSideIoConnectorsTop.png)
+![Cable](/assets/s-1300.jpg)
+![Top Side](/assets/RightSideIoConnectorsTop.png "Top View")
