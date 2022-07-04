@@ -150,8 +150,8 @@
 <wire x1="0.635" y1="80" x2="0.635" y2="40.259" width="0" layer="20"/>
 <text x="4.445" y="75.2475" size="0.8128" layer="25">GND</text>
 <text x="7.6835" y="75.184" size="0.8128" layer="25">3v3</text>
-<text x="8.636" y="68.199" size="1.27" layer="25" rot="R90">S   V   G</text>
-<text x="9.398" y="74.803" size="1.778" layer="26" rot="MR270">ESP32 I/0 Expand v1.0</text>
+<text x="8.3185" y="68.5165" size="1.27" layer="25" rot="R90">S  V  G</text>
+<text x="9.398" y="74.803" size="1.778" layer="26" rot="MR270">ESP32 I/O Adapt v1.0</text>
 <text x="1.27" y="79.0575" size="0.8128" layer="25">ESP32-Right</text>
 </plain>
 <libraries>
