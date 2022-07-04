@@ -3,10 +3,10 @@
 <eagle version="9.5.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="50" unitdist="mil" unit="inch" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="0.0125" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -148,10 +148,11 @@
 <wire x1="11.989" y1="40.259" x2="11.989" y2="80" width="0" layer="20"/>
 <wire x1="11.989" y1="80" x2="0.635" y2="80" width="0" layer="20"/>
 <wire x1="0.635" y1="80" x2="0.635" y2="40.259" width="0" layer="20"/>
-<text x="3.937" y="78.994" size="0.8128" layer="25">GND</text>
-<text x="7.366" y="78.994" size="0.8128" layer="25">3v3</text>
+<text x="4.445" y="75.2475" size="0.8128" layer="25">GND</text>
+<text x="7.6835" y="75.184" size="0.8128" layer="25">3v3</text>
 <text x="8.636" y="68.199" size="1.27" layer="25" rot="R90">S   V   G</text>
-<text x="9.398" y="74.803" size="1.778" layer="26" rot="MR270">Visca v1.1</text>
+<text x="9.398" y="74.803" size="1.778" layer="26" rot="MR270">ESP32 I/0 Expand v1.0</text>
+<text x="1.27" y="79.0575" size="0.8128" layer="25">ESP32-Right</text>
 </plain>
 <libraries>
 <library name="pinhead" urn="urn:adsk.eagle:library:325">
