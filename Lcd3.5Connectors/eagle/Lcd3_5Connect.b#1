@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.5.2">
+<eagle version="9.6.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -697,11 +697,11 @@ design rules under a new name.</description>
 </autorouter>
 <elements>
 <element name="ESP32-LEFT" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X15" package3d_urn="urn:adsk.eagle:package:22424/2" value="0" x="2.54" y="52.07" smashed="yes" rot="R270">
-<attribute name="NAME" x="0" y="71.12" size="1.016" layer="25" ratio="10" rot="R270"/>
+<attribute name="NAME" x="0.762" y="70.612" size="1.016" layer="26" ratio="10" rot="MR270"/>
 <attribute name="POPULARITY" value="4" x="-11.43" y="19.05" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="LCD-3.5" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X14" package3d_urn="urn:adsk.eagle:package:22417/2" value="0" x="7.493" y="50.8" smashed="yes" rot="R90">
-<attribute name="NAME" x="5.08" y="69.85" size="1.016" layer="25" ratio="10"/>
+<attribute name="NAME" x="9.398" y="40.64" size="1.016" layer="25" ratio="10" rot="R270"/>
 <attribute name="POPULARITY" value="12" x="29.083" y="82.55" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
 <element name="JP1" library="con-JST XH" package="S4B-XH-A-1" value="S4B-XH-A-1" x="2.54" y="27.686" smashed="yes" rot="R90"/>
