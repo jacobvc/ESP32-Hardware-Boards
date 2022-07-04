@@ -2,24 +2,24 @@ EAGLE AutoRouter Statistics:
 
 Job           : D:/dev/github/Esp32HardwareBoards/Esp32Relays/eagle/neopixel.brd
 
-Start at      : 10:41:38 (7/4/2022)
-End at        : 10:41:43 (7/4/2022)
-Elapsed time  : 00:00:02
+Start at      : 12:37:10 (7/4/2022)
+End at        : 12:37:33 (7/4/2022)
+Elapsed time  : 00:00:21
 
-Signals       :    29   RoutingGrid: 9.84252 mil  Layers: 2
-Connections   :    48   predefined:  0 ( 0 Vias )
+Signals       :    29   RoutingGrid: 3 mil  Layers: 2
+Connections   :    54   predefined:  0 ( 0 Vias )
 
-Router memory :   74000
+Router memory :   723200
 
-Passname          :    Busses     Route Optimize1 Optimize2 Optimize3 Optimize4
+Passname          : TopRouter     Route Optimize1 Optimize2 Optimize3 Optimize4 Optimize5 Optimize6 Optimize7 Optimize8 Optimize9Optimize10Optimize11Optimize12
 
-Time per pass     :  00:00:00  00:00:02  00:00:00  00:00:00  00:00:00  00:00:00
-Number of Ripups  :         0       126         0         0         0         0
-max. Level        :         0         5         0         0         0         0
-max. Total        :         0        14         0         0         0         0
+Time per pass     :  00:00:02  00:00:09  00:00:01  00:00:01  00:00:00  00:00:01  00:00:01  00:00:01  00:00:01  00:00:00  00:00:01  00:00:01  00:00:01  00:00:01
+Number of Ripups  :         0        47         0         0         0         0         0         0         0         0         0         0         0         0
+max. Level        :         0         2         0         0         0         0         0         0         0         0         0         0         0         0
+max. Total        :         0        14         0         0         0         0         0         0         0         0         0         0         0         0
 
-Routed            :         8        48        48        48        48        48
-Vias              :         0        51        34        33        32        31
-Resolution        :    16.7 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %
+Routed            :        38        54        53        54        54        54        54        54        54        54        54        54        54        54
+Vias              :         0        40        24        18        18        18        18        18        18        14        13        13        13        13
+Resolution        :    70.4 %   100.0 %    98.1 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %
 
 Final             : 100.0% finished
