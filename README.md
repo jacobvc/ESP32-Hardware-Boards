@@ -17,10 +17,14 @@ This design connects one side of an esp32 Dev Module (ESP32-LEFT) to a LCD touch
 
 ## ESP32 I/O Adapter
 This design connects the right side of an esp32 Dev Module to JST ZH 1.5mm keyed connectors. The connectors include
-1. 1 each 2 pin GS connector (switch)
-2. 3 each 3 pin GVS connectors (potentiomer, servo motor, etc)
-3. 1 each 4 pin GVSS connector (serial port)
-4. 2 each 5 pin GVSSS connectors (thumb joystick)
+* 1 each 2 pin GS connector (switch)
+* 3 each 3 pin GVS connectors (potentiomer, servo motor, etc)
+* 1 each 4 pin GVSS connector (serial port)
+* 2 each 5 pin GVSSS connectors (thumb joystick)
 
 ## ESP32 Audio / Relay Adapter
-This design connects the right side of an esp32 Dev Module to a three channel relay board and a CD4066 based analog switch. Two channels of the CD4066 are connected to 3.5mm TRS (input / output) audio connectors, and the other two are available on a pair of 0.1 in center 3 pin headers.
+This design connects right side of an esp32 Dev Module to:
+* A three channel relay board
+* A CD4066 based analog switch. Two channels of the CD4066 are connected to 3.5mm TRS (input / output) audio connectors, and the other two are available on a pair of 0.1 in center 3 pin headers.
+* A 3 pin G5VS connector intended to be used for Neopixel Matrix Display
+* Two 3 pin GVS connectors available for general use
