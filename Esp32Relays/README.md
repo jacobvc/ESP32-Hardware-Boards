@@ -1,6 +1,12 @@
 ## Esp32 Relays
-This design connects the right side of an esp32 Dev Module to a three channel relay board and a CD4066 based analog switch. Two channels of the CD4066 are connected to 3.5mm TRS (input / output) audio connectors, and the other two are available on a pair of 0.1 in center 3 pin headers.
+This design utilizes the right side of an esp32 Dev Module for:
 
+* A three channel relay board
+* A CD4066 based analog switch. Two channels of the CD4066 are connected to 3.5mm TRS (input / output) audio connectors, and the other two are available on a pair of 0.1 in center 3 pin headers.
+* A 3 pin (Ground, 5V, and Data on D32) connector intended to be used for Neopixel Matrix Display
+* Two 3 pin (Ground, 3.3v, D25 or D26) connectors available for general use
 
-![Top Side](/assets/neopixelTop.png "Top View")
-![Bottom Side](/assets/neopixelBottom.png "Bottom View")
+A 3 pin Power connector is provided for REQUIRED 3.3v inpu (from the other side of the ESP32) and optional VIN power if the system is not being powered by the ESP32 built in USB
+
+![Top Side](/assets/Esp32RelaysTop.png "Top View")
+![Bottom Side](/assets/Esp32RelaysBottom.png "Bottom View")
