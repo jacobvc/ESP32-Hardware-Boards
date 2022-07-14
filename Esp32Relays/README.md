@@ -27,5 +27,5 @@ The board is designed to use this three channel relay, which requires a 5V suppl
 
 The assembly looks like this (with the larger components set in place but not soldered).<br><img src="/assets/Esp32RelaysAssembly.png" width="320" height="240">
 
-The assembled components fit nicely into a 100 x 60 x 25 mm project box. The aoudio jacks are about 60.5 mm end to end, so you spread the case and they snap into place and help secure the assembly.<br><img src="/assets/Esp32RelaysLive.png" width="320" height="240">
+The assembled components fit nicely into a 100 x 60 x 25 mm project box. The audio jacks are about 60.5 mm end to end, so you spread the case and they snap into place and help secure the assembly.<br><img src="/assets/Esp32RelaysLive.png" width="320" height="240">
 
