@@ -26,7 +26,7 @@ The hardware connections (for LVGL driver) is supported by these definitions in 
     CONFIG_LV_TOUCH_PIN_IRQ=15
     # end of Touchpanel (XPT2046) Pin Assignments
 
-And separately to use the on-board SPI:
+And separately to use the on-display-board SD Card Socket:
 
     #define SHARED_SPI_SD_CS_PIN 22
     #define SHARED_SPI_SD_HOST VSPI_HOST // same as LCD
