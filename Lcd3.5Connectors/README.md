@@ -3,7 +3,7 @@ This design connects the left side of an esp32 Dev Module to a LCD touch screen 
 
 [Used with this display](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520)
 
-The hardware connections (for LVGL driver) is supported by these definitions in 'sdconfig'
+The hardware connections (for [LVGL driver](https://github.com/lvgl/lv_port_esp32) is supported by these definitions in 'sdconfig'
 
     CONFIG_LV_TFT_DISPLAY_SPI_VSPI=y
     CONFIG_LV_DISP_SPI_MOSI=4
