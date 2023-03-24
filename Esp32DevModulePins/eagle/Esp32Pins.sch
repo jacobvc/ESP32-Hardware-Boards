@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.5.2">
+<eagle version="9.6.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -430,21 +430,21 @@
 </class>
 </classes>
 <parts>
-<part name="ESP32-LEFT" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X15" device="" package3d_urn="urn:adsk.eagle:package:22424/2" value="0"/>
 <part name="ESP32-RIGHT" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X15" device="" package3d_urn="urn:adsk.eagle:package:22424/2" value="0"/>
+<part name="ESP32-LEFT" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X15" device="" package3d_urn="urn:adsk.eagle:package:22424/2" value="0"/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="ESP32-LEFT" gate="A" x="43.18" y="68.58" smashed="yes">
-<attribute name="NAME" x="29.21" y="89.535" size="1.778" layer="95"/>
-<attribute name="VALUE" x="36.83" y="45.72" size="1.778" layer="96"/>
+<instance part="ESP32-RIGHT" gate="A" x="60.96" y="68.58" smashed="yes" rot="R180">
+<attribute name="NAME" x="74.93" y="47.625" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="67.31" y="91.44" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="ESP32-RIGHT" gate="A" x="58.42" y="68.58" smashed="yes" rot="MR0">
-<attribute name="NAME" x="74.93" y="89.535" size="1.778" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="64.77" y="45.72" size="1.778" layer="96" rot="MR0"/>
+<instance part="ESP32-LEFT" gate="A" x="45.72" y="68.58" smashed="yes" rot="MR180">
+<attribute name="NAME" x="29.21" y="47.625" size="1.778" layer="95" rot="MR180"/>
+<attribute name="VALUE" x="39.37" y="91.44" size="1.778" layer="96" rot="MR180"/>
 </instance>
 </instances>
 <busses>
@@ -452,210 +452,210 @@
 <nets>
 <net name="VIN" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="1"/>
-<wire x1="60.96" y1="86.36" x2="71.12" y2="86.36" width="0.1524" layer="91"/>
-<label x="71.12" y="86.36" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="1"/>
+<wire x1="43.18" y1="50.8" x2="33.02" y2="50.8" width="0.1524" layer="91"/>
+<label x="33.02" y="50.8" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="2"/>
-<wire x1="40.64" y1="83.82" x2="30.48" y2="83.82" width="0.1524" layer="91"/>
-<label x="30.48" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="2"/>
+<wire x1="63.5" y1="53.34" x2="73.66" y2="53.34" width="0.1524" layer="91"/>
+<label x="73.66" y="53.34" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="2"/>
-<wire x1="60.96" y1="83.82" x2="71.12" y2="83.82" width="0.1524" layer="91"/>
-<label x="71.12" y="83.82" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="2"/>
+<wire x1="43.18" y1="53.34" x2="33.02" y2="53.34" width="0.1524" layer="91"/>
+<label x="33.02" y="53.34" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D13" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="3"/>
-<wire x1="60.96" y1="81.28" x2="71.12" y2="81.28" width="0.1524" layer="91"/>
-<label x="71.12" y="81.28" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="3"/>
+<wire x1="43.18" y1="55.88" x2="33.02" y2="55.88" width="0.1524" layer="91"/>
+<label x="33.02" y="55.88" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D12" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="4"/>
-<wire x1="60.96" y1="78.74" x2="71.12" y2="78.74" width="0.1524" layer="91"/>
-<label x="71.12" y="78.74" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="4"/>
+<wire x1="43.18" y1="58.42" x2="33.02" y2="58.42" width="0.1524" layer="91"/>
+<label x="33.02" y="58.42" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D27" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="6"/>
-<wire x1="60.96" y1="73.66" x2="71.12" y2="73.66" width="0.1524" layer="91"/>
-<label x="71.12" y="73.66" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="6"/>
+<wire x1="43.18" y1="63.5" x2="33.02" y2="63.5" width="0.1524" layer="91"/>
+<label x="33.02" y="63.5" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D26" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="7"/>
-<wire x1="60.96" y1="71.12" x2="71.12" y2="71.12" width="0.1524" layer="91"/>
-<label x="71.12" y="71.12" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="7"/>
+<wire x1="43.18" y1="66.04" x2="33.02" y2="66.04" width="0.1524" layer="91"/>
+<label x="33.02" y="66.04" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D25" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="8"/>
-<wire x1="60.96" y1="68.58" x2="71.12" y2="68.58" width="0.1524" layer="91"/>
-<label x="71.12" y="68.58" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="8"/>
+<wire x1="43.18" y1="68.58" x2="33.02" y2="68.58" width="0.1524" layer="91"/>
+<label x="33.02" y="68.58" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D33" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="9"/>
-<wire x1="60.96" y1="66.04" x2="71.12" y2="66.04" width="0.1524" layer="91"/>
-<label x="71.12" y="66.04" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="9"/>
+<wire x1="43.18" y1="71.12" x2="33.02" y2="71.12" width="0.1524" layer="91"/>
+<label x="33.02" y="71.12" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D32" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="10"/>
-<wire x1="60.96" y1="63.5" x2="71.12" y2="63.5" width="0.1524" layer="91"/>
-<label x="71.12" y="63.5" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="10"/>
+<wire x1="43.18" y1="73.66" x2="33.02" y2="73.66" width="0.1524" layer="91"/>
+<label x="33.02" y="73.66" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="I35" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="11"/>
-<wire x1="60.96" y1="60.96" x2="71.12" y2="60.96" width="0.1524" layer="91"/>
-<label x="71.12" y="60.96" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="11"/>
+<wire x1="43.18" y1="76.2" x2="33.02" y2="76.2" width="0.1524" layer="91"/>
+<label x="33.02" y="76.2" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="I36" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="14"/>
-<wire x1="60.96" y1="53.34" x2="71.12" y2="53.34" width="0.1524" layer="91"/>
-<label x="71.12" y="53.34" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="14"/>
+<wire x1="43.18" y1="83.82" x2="33.02" y2="83.82" width="0.1524" layer="91"/>
+<label x="33.02" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="RESET" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="15"/>
-<wire x1="60.96" y1="50.8" x2="71.12" y2="50.8" width="0.1524" layer="91"/>
-<label x="71.12" y="50.8" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="15"/>
+<wire x1="43.18" y1="86.36" x2="33.02" y2="86.36" width="0.1524" layer="91"/>
+<label x="33.02" y="86.36" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D14" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="5"/>
-<wire x1="60.96" y1="76.2" x2="71.12" y2="76.2" width="0.1524" layer="91"/>
-<label x="71.12" y="76.2" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="5"/>
+<wire x1="43.18" y1="60.96" x2="33.02" y2="60.96" width="0.1524" layer="91"/>
+<label x="33.02" y="60.96" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="I39" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="13"/>
-<wire x1="60.96" y1="55.88" x2="71.12" y2="55.88" width="0.1524" layer="91"/>
-<label x="71.12" y="55.88" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="13"/>
+<wire x1="43.18" y1="81.28" x2="33.02" y2="81.28" width="0.1524" layer="91"/>
+<label x="33.02" y="81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="I34" class="0">
 <segment>
-<pinref part="ESP32-RIGHT" gate="A" pin="12"/>
-<wire x1="60.96" y1="58.42" x2="71.12" y2="58.42" width="0.1524" layer="91"/>
-<label x="71.12" y="58.42" size="1.27" layer="95" xref="yes"/>
+<pinref part="ESP32-LEFT" gate="A" pin="12"/>
+<wire x1="43.18" y1="78.74" x2="33.02" y2="78.74" width="0.1524" layer="91"/>
+<label x="33.02" y="78.74" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="3V3" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="1"/>
-<wire x1="40.64" y1="86.36" x2="30.48" y2="86.36" width="0.1524" layer="91"/>
-<label x="30.48" y="86.36" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="1"/>
+<wire x1="63.5" y1="50.8" x2="73.66" y2="50.8" width="0.1524" layer="91"/>
+<label x="73.66" y="50.8" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D15" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="3"/>
-<wire x1="40.64" y1="81.28" x2="30.48" y2="81.28" width="0.1524" layer="91"/>
-<label x="30.48" y="81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="3"/>
+<wire x1="63.5" y1="55.88" x2="73.66" y2="55.88" width="0.1524" layer="91"/>
+<label x="73.66" y="55.88" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D2" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="4"/>
-<wire x1="40.64" y1="78.74" x2="30.48" y2="78.74" width="0.1524" layer="91"/>
-<label x="30.48" y="78.74" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="4"/>
+<wire x1="63.5" y1="58.42" x2="73.66" y2="58.42" width="0.1524" layer="91"/>
+<label x="73.66" y="58.42" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D4" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="5"/>
-<wire x1="40.64" y1="76.2" x2="30.48" y2="76.2" width="0.1524" layer="91"/>
-<label x="30.48" y="76.2" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="5"/>
+<wire x1="63.5" y1="60.96" x2="73.66" y2="60.96" width="0.1524" layer="91"/>
+<label x="73.66" y="60.96" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D16" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="6"/>
-<wire x1="40.64" y1="73.66" x2="30.48" y2="73.66" width="0.1524" layer="91"/>
-<label x="30.48" y="73.66" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="6"/>
+<wire x1="63.5" y1="63.5" x2="73.66" y2="63.5" width="0.1524" layer="91"/>
+<label x="73.66" y="63.5" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D17" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="7"/>
-<wire x1="40.64" y1="71.12" x2="30.48" y2="71.12" width="0.1524" layer="91"/>
-<label x="30.48" y="71.12" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="7"/>
+<wire x1="63.5" y1="66.04" x2="73.66" y2="66.04" width="0.1524" layer="91"/>
+<label x="73.66" y="66.04" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D5" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="8"/>
-<wire x1="40.64" y1="68.58" x2="30.48" y2="68.58" width="0.1524" layer="91"/>
-<label x="30.48" y="68.58" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="8"/>
+<wire x1="63.5" y1="68.58" x2="73.66" y2="68.58" width="0.1524" layer="91"/>
+<label x="73.66" y="68.58" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D18" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="9"/>
-<wire x1="40.64" y1="66.04" x2="30.48" y2="66.04" width="0.1524" layer="91"/>
-<label x="30.48" y="66.04" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="9"/>
+<wire x1="63.5" y1="71.12" x2="73.66" y2="71.12" width="0.1524" layer="91"/>
+<label x="73.66" y="71.12" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D19" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="10"/>
-<wire x1="40.64" y1="63.5" x2="30.48" y2="63.5" width="0.1524" layer="91"/>
-<label x="30.48" y="63.5" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="10"/>
+<wire x1="63.5" y1="73.66" x2="73.66" y2="73.66" width="0.1524" layer="91"/>
+<label x="73.66" y="73.66" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D21" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="11"/>
-<wire x1="40.64" y1="60.96" x2="30.48" y2="60.96" width="0.1524" layer="91"/>
-<label x="30.48" y="60.96" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="11"/>
+<wire x1="63.5" y1="76.2" x2="73.66" y2="76.2" width="0.1524" layer="91"/>
+<label x="73.66" y="76.2" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D22" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="14"/>
-<wire x1="40.64" y1="53.34" x2="30.48" y2="53.34" width="0.1524" layer="91"/>
-<label x="30.48" y="53.34" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="14"/>
+<wire x1="63.5" y1="83.82" x2="73.66" y2="83.82" width="0.1524" layer="91"/>
+<label x="73.66" y="83.82" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D23" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="15"/>
-<wire x1="40.64" y1="50.8" x2="30.48" y2="50.8" width="0.1524" layer="91"/>
-<label x="30.48" y="50.8" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="15"/>
+<wire x1="63.5" y1="86.36" x2="73.66" y2="86.36" width="0.1524" layer="91"/>
+<label x="73.66" y="86.36" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D3_RX" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="12"/>
-<wire x1="40.64" y1="58.42" x2="30.48" y2="58.42" width="0.1524" layer="91"/>
-<label x="30.48" y="58.42" size="1.016" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="12"/>
+<wire x1="63.5" y1="78.74" x2="73.66" y2="78.74" width="0.1524" layer="91"/>
+<label x="73.66" y="78.74" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D1_TX" class="0">
 <segment>
-<pinref part="ESP32-LEFT" gate="A" pin="13"/>
-<wire x1="40.64" y1="55.88" x2="30.48" y2="55.88" width="0.1524" layer="91"/>
-<label x="30.48" y="55.88" size="1.016" layer="95" rot="R180" xref="yes"/>
+<pinref part="ESP32-RIGHT" gate="A" pin="13"/>
+<wire x1="63.5" y1="81.28" x2="73.66" y2="81.28" width="0.1524" layer="91"/>
+<label x="73.66" y="81.28" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>

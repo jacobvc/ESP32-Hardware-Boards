@@ -1,5 +1,5 @@
 # Lcd 3.5 Connectors
-This design connects the left side of an esp32 Dev Module to a LCD touch screen display. The display uses all of the GPIOs on that side except two. A four pin connector supports connecting the display mounted SD socket using a shared SPI. The two unused ports are routed to a four pin I2C connector. 
+This design connects the right side of an esp32 Dev Module to a LCD touch screen display. The display uses all of the GPIOs on that side except two. A four pin connector supports connecting the display mounted SD socket using a shared SPI. The two unused ports are routed to a four pin I2C connector. 
 
 [Used with this display](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520)
 

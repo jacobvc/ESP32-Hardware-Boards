@@ -11,19 +11,19 @@ All of the boards are designed using eagle, and any of them can be ordered in ma
 This design consists of two 15 pin pin headers; ESP32-LEFT and ESP32-RIGHT, with wires and labels corresponding to pin functionality. They are not 'connected' to one-another and are generally intended to be used as a quick start in laying out a board for one or the other side of an esp32 Dev Module. 
 
 ## ESP32 Lcd 3.5 Connectors
-This design connects one side of an esp32 Dev Module (ESP32-LEFT) to a LCD touch screen display. The display uses all of the GPIOs on that side except two. A four pin connector supports connecting the display mounted SD socket using a shared SPI. The two unused ports are routed to a four pin I2C connector. 
+This design connects one side of an esp32 Dev Module (ESP32-RIGHT) to a LCD touch screen display. The display uses all of the GPIOs on that side except two. A four pin connector supports connecting the display mounted SD socket using a shared SPI. The two unused ports are routed to a four pin I2C connector. 
 
 [Used with this display](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520)
 
 ## ESP32 I/O Adapter
-This design connects the right side of an esp32 Dev Module to JST ZH 1.5mm keyed connectors. The connectors include
+This design connects the left side of an esp32 Dev Module to JST ZH 1.5mm keyed connectors. The connectors include
 * 1 each 2 pin GS connector (switch)
 * 3 each 3 pin GVS connectors (potentiomer, servo motor, etc)
 * 1 each 4 pin GVSS connector (serial port)
 * 2 each 5 pin GVSSS connectors (thumb joystick)
 
 ## ESP32 Audio / Relay Adapter
-This design connects right side of an esp32 Dev Module to:
+This design connects left side of an esp32 Dev Module to:
 * A three channel relay board
 * A CD4066 based analog switch. Two channels of the CD4066 are connected to 3.5mm TRS (input / output) audio connectors, and the other two are available on a pair of 0.1 in center 3 pin headers.
 * A 3 pin G5VS connector intended to be used for Neopixel Matrix Display

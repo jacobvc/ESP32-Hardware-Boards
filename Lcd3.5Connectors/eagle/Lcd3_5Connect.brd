@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="12.5" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -729,7 +729,7 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="ESP32-LEFT" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X15" package3d_urn="urn:adsk.eagle:package:22424/2" value="0" x="2.54" y="53.34" smashed="yes" rot="R270">
+<element name="ESP32-RIGHT" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X15" package3d_urn="urn:adsk.eagle:package:22424/2" value="0" x="2.54" y="53.34" smashed="yes" rot="R270">
 <attribute name="NAME" x="0" y="72.39" size="1.016" layer="25" ratio="10" rot="R270"/>
 <attribute name="POPULARITY" value="4" x="-11.43" y="20.32" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -748,7 +748,7 @@ design rules under a new name.</description>
 </elements>
 <signals>
 <signal name="3V3">
-<contactref element="ESP32-LEFT" pad="1"/>
+<contactref element="ESP32-RIGHT" pad="1"/>
 <contactref element="LCD-3.5" pad="1"/>
 <contactref element="JP2" pad="1"/>
 <contactref element="LCD-3.5" pad="8"/>
@@ -779,7 +779,7 @@ design rules under a new name.</description>
 <via x="5.6388" y="50.292" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="GND">
-<contactref element="ESP32-LEFT" pad="2"/>
+<contactref element="ESP32-RIGHT" pad="2"/>
 <contactref element="LCD-3.5" pad="2"/>
 <contactref element="JP2" pad="2"/>
 <contactref element="JP3" pad="2"/>
@@ -797,7 +797,7 @@ design rules under a new name.</description>
 <wire x1="7.62" y1="36.8808" x2="7.493" y2="36.83" width="0.1524" layer="16"/>
 </signal>
 <signal name="15">
-<contactref element="ESP32-LEFT" pad="3"/>
+<contactref element="ESP32-RIGHT" pad="3"/>
 <contactref element="LCD-3.5" pad="14"/>
 <wire x1="6.4008" y1="66.1416" x2="2.5908" y2="66.1416" width="0.1524" layer="1"/>
 <wire x1="7.4676" y1="67.2084" x2="6.4008" y2="66.1416" width="0.1524" layer="1"/>
@@ -805,7 +805,7 @@ design rules under a new name.</description>
 <wire x1="7.4676" y1="67.2084" x2="7.493" y2="67.31" width="0.1524" layer="1"/>
 </signal>
 <signal name="2">
-<contactref element="ESP32-LEFT" pad="4"/>
+<contactref element="ESP32-RIGHT" pad="4"/>
 <contactref element="LCD-3.5" pad="13"/>
 <contactref element="JP1" pad="3"/>
 <wire x1="2.4384" y1="30.3276" x2="2.4384" y2="29.2608" width="0.1524" layer="16"/>
@@ -817,7 +817,7 @@ design rules under a new name.</description>
 <wire x1="2.54" y1="63.5" x2="3.81" y2="64.77" width="0.1524" layer="1"/>
 </signal>
 <signal name="4">
-<contactref element="ESP32-LEFT" pad="5"/>
+<contactref element="ESP32-RIGHT" pad="5"/>
 <contactref element="LCD-3.5" pad="6"/>
 <contactref element="LCD-3.5" pad="12"/>
 <contactref element="JP1" pad="2"/>
@@ -840,7 +840,7 @@ design rules under a new name.</description>
 <wire x1="7.62" y1="47.0916" x2="7.493" y2="46.99" width="0.1524" layer="1"/>
 </signal>
 <signal name="16">
-<contactref element="ESP32-LEFT" pad="6"/>
+<contactref element="ESP32-RIGHT" pad="6"/>
 <contactref element="LCD-3.5" pad="11"/>
 <wire x1="6.4008" y1="58.5216" x2="2.5908" y2="58.5216" width="0.1524" layer="1"/>
 <wire x1="7.4676" y1="59.5884" x2="6.4008" y2="58.5216" width="0.1524" layer="1"/>
@@ -848,7 +848,7 @@ design rules under a new name.</description>
 <wire x1="7.4676" y1="59.5884" x2="7.493" y2="59.69" width="0.1524" layer="1"/>
 </signal>
 <signal name="17">
-<contactref element="ESP32-LEFT" pad="7"/>
+<contactref element="ESP32-RIGHT" pad="7"/>
 <contactref element="LCD-3.5" pad="7"/>
 <contactref element="LCD-3.5" pad="10"/>
 <contactref element="JP1" pad="4"/>
@@ -868,7 +868,7 @@ design rules under a new name.</description>
 <wire x1="7.4676" y1="49.53" x2="7.493" y2="49.53" width="0.1524" layer="1"/>
 </signal>
 <signal name="5">
-<contactref element="ESP32-LEFT" pad="8"/>
+<contactref element="ESP32-RIGHT" pad="8"/>
 <contactref element="LCD-3.5" pad="5"/>
 <wire x1="2.5908" y1="53.0352" x2="2.5908" y2="53.34" width="0.1524" layer="1"/>
 <wire x1="5.0292" y1="50.5968" x2="2.5908" y2="53.0352" width="0.1524" layer="1"/>
@@ -878,7 +878,7 @@ design rules under a new name.</description>
 <wire x1="7.4676" y1="44.3484" x2="7.493" y2="44.45" width="0.1524" layer="1"/>
 </signal>
 <signal name="18">
-<contactref element="ESP32-LEFT" pad="9"/>
+<contactref element="ESP32-RIGHT" pad="9"/>
 <contactref element="LCD-3.5" pad="4"/>
 <wire x1="2.5908" y1="50.4444" x2="2.5908" y2="50.7492" width="0.1524" layer="1"/>
 <wire x1="4.7244" y1="48.3108" x2="2.5908" y2="50.4444" width="0.1524" layer="1"/>
@@ -888,7 +888,7 @@ design rules under a new name.</description>
 <wire x1="7.4676" y1="41.91" x2="7.493" y2="41.91" width="0.1524" layer="1"/>
 </signal>
 <signal name="19">
-<contactref element="ESP32-LEFT" pad="10"/>
+<contactref element="ESP32-RIGHT" pad="10"/>
 <contactref element="LCD-3.5" pad="3"/>
 <wire x1="2.5908" y1="47.8536" x2="2.5908" y2="48.1584" width="0.1524" layer="1"/>
 <wire x1="4.4196" y1="46.0248" x2="2.5908" y2="47.8536" width="0.1524" layer="1"/>
@@ -900,7 +900,7 @@ design rules under a new name.</description>
 <wire x1="7.4676" y1="39.4716" x2="7.493" y2="39.37" width="0.1524" layer="1"/>
 </signal>
 <signal name="21">
-<contactref element="ESP32-LEFT" pad="11"/>
+<contactref element="ESP32-RIGHT" pad="11"/>
 <contactref element="JP2" pad="4"/>
 <wire x1="2.5908" y1="45.4152" x2="2.5908" y2="45.72" width="0.1524" layer="1"/>
 <wire x1="5.334" y1="42.672" x2="2.5908" y2="45.4152" width="0.1524" layer="1"/>
@@ -910,7 +910,7 @@ design rules under a new name.</description>
 <wire x1="7.62" y1="31.8516" x2="7.62" y2="31.75" width="0.1524" layer="1"/>
 </signal>
 <signal name="22">
-<contactref element="ESP32-LEFT" pad="14"/>
+<contactref element="ESP32-RIGHT" pad="14"/>
 <contactref element="JP1" pad="1"/>
 <wire x1="2.4384" y1="25.2984" x2="2.4384" y2="24.2316" width="0.1524" layer="1"/>
 <wire x1="0.762" y1="26.9748" x2="2.4384" y2="25.2984" width="0.1524" layer="1"/>
@@ -920,7 +920,7 @@ design rules under a new name.</description>
 <wire x1="2.4384" y1="38.1" x2="2.54" y2="38.1" width="0.1524" layer="1"/>
 </signal>
 <signal name="23">
-<contactref element="ESP32-LEFT" pad="15"/>
+<contactref element="ESP32-RIGHT" pad="15"/>
 <contactref element="JP2" pad="3"/>
 <wire x1="2.5908" y1="34.29" x2="2.5908" y2="35.5092" width="0.1524" layer="1"/>
 <wire x1="7.62" y1="29.2608" x2="2.5908" y2="34.29" width="0.1524" layer="1"/>

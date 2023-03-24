@@ -1,5 +1,5 @@
-# Right Side IO Connectors
-(ESP32-RIGHT) to JST ZH 1.5mm keyed connectors. The connectors include
+# Left Side IO Connectors
+(ESP32-LEFT) to JST ZH 1.5mm keyed connectors. The connectors include
 1. 1 each 2 pin GS connector (switch)
 2. 3 each 3 pin GVS connectors (potentiomer, servo motor, etc). One connector is 0.1 center.
 3. 1 each 4 pin GVSS connector (serial port)
