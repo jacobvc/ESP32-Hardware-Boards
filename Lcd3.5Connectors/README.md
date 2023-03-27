@@ -23,11 +23,12 @@ The hardware connections (for [LVGL V7 driver](https://github.com/lvgl/lv_port_e
     CONFIG_LV_TOUCH_SPI_MOSI=4
     CONFIG_LV_TOUCH_SPI_CLK=17
     CONFIG_LV_TOUCH_SPI_CS=16
-    CONFIG_LV_TOUCH_PIN_IRQ=15
+    # CONFIG_LV_TOUCH_PIN_IRQ is not set
     # end of Touchpanel (XPT2046) Pin Assignments
 
 And separately to use the on-display-board SD Card Socket:
 
+    #define LCD_BACKLIGHT_PIN 15
     #define SHARED_SPI_SD_CS_PIN 22
     #define SHARED_SPI_SD_HOST VSPI_HOST // same as LCD
 
