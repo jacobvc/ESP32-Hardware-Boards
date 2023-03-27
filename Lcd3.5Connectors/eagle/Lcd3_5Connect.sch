@@ -1233,11 +1233,6 @@ SDA</text>
 <label x="-10.16" y="33.02" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="LCD-3.5" gate="A" pin="8"/>
-<wire x1="40.64" y1="60.96" x2="30.48" y2="60.96" width="0.1524" layer="91"/>
-<label x="30.48" y="60.96" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="JP3" gate="G$1" pin="1"/>
 <wire x1="55.88" y1="35.56" x2="50.8" y2="35.56" width="0.1524" layer="91"/>
 <label x="50.8" y="35.56" size="1.27" layer="95" rot="R180" xref="yes"/>
@@ -1272,9 +1267,9 @@ SDA</text>
 <label x="-12.7" y="73.66" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="LCD-3.5" gate="A" pin="14"/>
-<wire x1="40.64" y1="45.72" x2="30.48" y2="45.72" width="0.1524" layer="91"/>
-<label x="30.48" y="45.72" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="LCD-3.5" gate="A" pin="8"/>
+<wire x1="40.64" y1="60.96" x2="30.48" y2="60.96" width="0.1524" layer="91"/>
+<label x="30.48" y="60.96" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="2" class="0">
