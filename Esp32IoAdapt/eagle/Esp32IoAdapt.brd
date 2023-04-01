@@ -668,7 +668,9 @@ design rules under a new name.</description>
 <element name="SLIDE1" library="jst" package="B3B-ZR" value="B3B-ZR" x="6.604" y="63.5" smashed="yes" rot="R270">
 <attribute name="NAME" x="4.977" y="61.401" size="0.8128" layer="25" rot="R90"/>
 </element>
-<element name="SLIDE2" library="jst" package="B3B-ZR" value="B3B-ZR" x="6.731" y="56.007" smashed="yes" rot="R270"/>
+<element name="SLIDE2" library="jst" package="B3B-ZR" value="B3B-ZR" x="6.731" y="56.007" smashed="yes" rot="R270">
+<attribute name="SLIDE2" value="" x="5.0165" y="53.848" size="0.8128" layer="25" rot="R90" display="name"/>
+</element>
 <element name="JOY1" library="jst" package="B5B-ZR" value="B5B-ZR" x="9.271" y="57.912" smashed="yes" rot="R90">
 <attribute name="NAME" x="8.874" y="64.02" size="0.8128" layer="25" rot="R90"/>
 </element>
