@@ -150,7 +150,7 @@
 <wire x1="0.635" y1="80" x2="0.635" y2="40.259" width="0" layer="20"/>
 <text x="4.445" y="75.2475" size="0.8128" layer="25">GND</text>
 <text x="7.6835" y="75.184" size="0.8128" layer="25">3v3</text>
-<text x="5.461" y="69.1515" size="1.27" layer="26" rot="MR90">GVS
+<text x="5.7785" y="69.1515" size="1.27" layer="26" rot="MR90">GVS1
 </text>
 <text x="11.6205" y="79.5655" size="1.27" layer="26" rot="MR270">I/O Adapt v1.1</text>
 <text x="1.27" y="79.0575" size="0.8128" layer="25">ESP32-LEFT</text>
@@ -666,29 +666,29 @@ design rules under a new name.</description>
 <element name="ESP32-RIGHT" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X15" package3d_urn="urn:adsk.eagle:package:22424/2" value="0" x="2.54" y="59.69" smashed="yes" rot="R270">
 <attribute name="POPULARITY" value="4" x="2.54" y="59.69" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="GVI-1" library="jst" package="B3B-ZR" value="B3B-ZR" x="6.604" y="63.5" smashed="yes" rot="R270">
-<attribute name="NAME" x="7.8345" y="62.036" size="0.8128" layer="26" rot="MR90"/>
+<element name="GVI1" library="jst" package="B3B-ZR" value="B3B-ZR" x="6.604" y="63.5" smashed="yes" rot="R270">
+<attribute name="NAME" x="7.8345" y="62.036" size="1.27" layer="26" rot="MR90"/>
 </element>
-<element name="GVI-2" library="jst" package="B3B-ZR" value="B3B-ZR" x="6.731" y="56.007" smashed="yes" rot="R270">
-<attribute name="GVI-2" value="" x="7.874" y="53.848" size="0.8128" layer="26" rot="MR90" display="name"/>
+<element name="GVI2" library="jst" package="B3B-ZR" value="B3B-ZR" x="6.731" y="56.007" smashed="yes" rot="R270">
+<attribute name="GVI2" value="" x="7.874" y="52.2605" size="1.27" layer="26" rot="MR90" display="name"/>
 </element>
-<element name="GVSSS" library="jst" package="B5B-ZR" value="B5B-ZR" x="9.271" y="57.912" smashed="yes" rot="R90">
+<element name="GVSSS1" library="jst" package="B5B-ZR" value="B5B-ZR" x="9.271" y="57.912" smashed="yes" rot="R90">
 <attribute name="NAME" x="11.0965" y="60.21" size="0.8128" layer="26" rot="MR90"/>
 </element>
-<element name="GVIIS" library="jst" package="B5B-ZR" value="B5B-ZR" x="9.271" y="48.514" smashed="yes" rot="R90">
-<attribute name="NAME" x="11.2" y="51.574" size="0.8128" layer="26" rot="MR90"/>
+<element name="GVIIS1" library="jst" package="B5B-ZR" value="B5B-ZR" x="9.271" y="48.514" smashed="yes" rot="R90">
+<attribute name="NAME" x="11.2" y="51.2565" size="0.8128" layer="26" rot="MR90"/>
 </element>
-<element name="GVSS" library="jst" package="B4B-ZR" value="B4B-ZR" x="5.461" y="44.704" smashed="yes" rot="R90">
-<attribute name="NAME" x="7.7945" y="47.129" size="0.8128" layer="26" rot="MR90"/>
+<element name="GVSS1" library="jst" package="B4B-ZR" value="B4B-ZR" x="5.461" y="44.704" smashed="yes" rot="R90">
+<attribute name="NAME" x="7.7945" y="43.6365" size="1.27" layer="26" rot="MR90"/>
 </element>
-<element name="GS" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X02" package3d_urn="urn:adsk.eagle:package:38039/1" value="" x="10.16" y="44.323" smashed="yes" rot="R270">
+<element name="GS1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X02" package3d_urn="urn:adsk.eagle:package:38039/1" value="" x="10.16" y="44.323" smashed="yes" rot="R270">
 <attribute name="NAME" x="9.652" y="45.847" size="0.8128" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="8.128" y="45.593" size="0.6096" layer="27" font="vector" ratio="20" rot="R270"/>
 </element>
 <element name="PWR" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X02" package3d_urn="urn:adsk.eagle:package:38039/1" value="" x="5.715" y="77.47" smashed="yes">
 <attribute name="VALUE" x="4.445" y="75.438" size="0.6096" layer="27" font="vector" ratio="20"/>
 </element>
-<element name="GVS" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X03" package3d_urn="urn:adsk.eagle:package:38063/1" value="" x="5.588" y="73.914" smashed="yes" rot="R270">
+<element name="GVS1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X03" package3d_urn="urn:adsk.eagle:package:38063/1" value="" x="5.588" y="73.914" smashed="yes" rot="R270">
 <attribute name="VALUE" x="3.556" y="75.184" size="0.6096" layer="27" font="vector" ratio="20" rot="R270"/>
 </element>
 </elements>
@@ -698,14 +698,14 @@ design rules under a new name.</description>
 </signal>
 <signal name="GND">
 <contactref element="ESP32-RIGHT" pad="2"/>
-<contactref element="GVI-1" pad="1"/>
-<contactref element="GVSSS" pad="1"/>
-<contactref element="GVI-2" pad="1"/>
-<contactref element="GVIIS" pad="1"/>
-<contactref element="GS" pad="1"/>
-<contactref element="GVSS" pad="1"/>
+<contactref element="GVI1" pad="1"/>
+<contactref element="GVSSS1" pad="1"/>
+<contactref element="GVI2" pad="1"/>
+<contactref element="GVIIS1" pad="1"/>
+<contactref element="GS1" pad="1"/>
+<contactref element="GVSS1" pad="1"/>
 <contactref element="PWR" pad="1"/>
-<contactref element="GVS" pad="1"/>
+<contactref element="GVS1" pad="1"/>
 <wire x1="10.16" y1="47.3075" x2="6.985" y2="50.4825" width="0.1524" layer="1"/>
 <wire x1="10.16" y1="44.323" x2="10.16" y2="47.3075" width="0.1524" layer="1"/>
 <wire x1="6.985" y1="50.4825" x2="6.761" y2="50.704" width="0.1524" layer="1"/>
@@ -741,7 +741,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="D13">
 <contactref element="ESP32-RIGHT" pad="3"/>
-<contactref element="GVSS" pad="4"/>
+<contactref element="GVSS1" pad="4"/>
 <wire x1="5.08" y1="47.9425" x2="6.6675" y2="46.355" width="0.1524" layer="16"/>
 <wire x1="5.08" y1="56.1975" x2="5.08" y2="47.9425" width="0.1524" layer="16"/>
 <wire x1="5.715" y1="56.8325" x2="5.08" y2="56.1975" width="0.1524" layer="16"/>
@@ -757,7 +757,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="D12">
 <contactref element="ESP32-RIGHT" pad="4"/>
-<contactref element="GVSS" pad="3"/>
+<contactref element="GVSS1" pad="3"/>
 <wire x1="8.89" y1="49.8475" x2="6.985" y2="47.9425" width="0.1524" layer="16"/>
 <wire x1="8.89" y1="67.31" x2="8.89" y2="49.8475" width="0.1524" layer="16"/>
 <wire x1="6.0325" y1="70.1675" x2="8.89" y2="67.31" width="0.1524" layer="1"/>
@@ -768,7 +768,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="D27">
 <contactref element="ESP32-RIGHT" pad="6"/>
-<contactref element="GS" pad="2"/>
+<contactref element="GS1" pad="2"/>
 <wire x1="3.81" y1="66.04" x2="2.54" y2="64.77" width="0.1524" layer="1"/>
 <wire x1="9.525" y1="66.04" x2="3.81" y2="66.04" width="0.1524" layer="1"/>
 <wire x1="9.2075" y1="65.7225" x2="9.525" y2="66.04" width="0.1524" layer="16"/>
@@ -781,7 +781,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="D26">
 <contactref element="ESP32-RIGHT" pad="7"/>
-<contactref element="GVSSS" pad="5"/>
+<contactref element="GVSSS1" pad="5"/>
 <wire x1="10.16" y1="60.0075" x2="10.4775" y2="59.69" width="0.1524" layer="1"/>
 <wire x1="4.7625" y1="60.0075" x2="10.16" y2="60.0075" width="0.1524" layer="1"/>
 <wire x1="2.54" y1="62.23" x2="4.7625" y2="60.0075" width="0.1524" layer="1"/>
@@ -789,7 +789,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="D25">
 <contactref element="ESP32-RIGHT" pad="8"/>
-<contactref element="GVIIS" pad="5"/>
+<contactref element="GVIIS1" pad="5"/>
 <wire x1="9.525" y1="51.1175" x2="10.4775" y2="50.165" width="0.1524" layer="1"/>
 <wire x1="8.255" y1="51.1175" x2="9.525" y2="51.1175" width="0.1524" layer="1"/>
 <wire x1="8.255" y1="57.785" x2="8.255" y2="51.1175" width="0.1524" layer="16"/>
@@ -802,7 +802,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="D33">
 <contactref element="ESP32-RIGHT" pad="9"/>
-<contactref element="GVSSS" pad="3"/>
+<contactref element="GVSSS1" pad="3"/>
 <wire x1="9.525" y1="61.2775" x2="10.4775" y2="62.23" width="0.1524" layer="1"/>
 <wire x1="8.255" y1="61.2775" x2="9.525" y2="61.2775" width="0.1524" layer="1"/>
 <wire x1="8.255" y1="58.7375" x2="8.255" y2="61.2775" width="0.1524" layer="16"/>
@@ -815,7 +815,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="D32">
 <contactref element="ESP32-RIGHT" pad="10"/>
-<contactref element="GVSSS" pad="4"/>
+<contactref element="GVSSS1" pad="4"/>
 <wire x1="5.08" y1="60.6425" x2="10.4775" y2="60.6425" width="0.1524" layer="1"/>
 <wire x1="5.08" y1="57.15" x2="5.08" y2="60.6425" width="0.1524" layer="16"/>
 <wire x1="2.54" y1="54.61" x2="5.08" y2="57.15" width="0.1524" layer="1"/>
@@ -825,14 +825,14 @@ design rules under a new name.</description>
 </signal>
 <signal name="I35">
 <contactref element="ESP32-RIGHT" pad="11"/>
-<contactref element="GVIIS" pad="3"/>
+<contactref element="GVIIS1" pad="3"/>
 <wire x1="9.8425" y1="52.07" x2="10.4775" y2="52.705" width="0.1524" layer="1"/>
 <wire x1="2.54" y1="52.07" x2="9.8425" y2="52.07" width="0.1524" layer="1"/>
 <wire x1="10.4775" y1="52.705" x2="10.571" y2="53.014" width="0.1524" layer="1"/>
 </signal>
 <signal name="I36">
 <contactref element="ESP32-RIGHT" pad="14"/>
-<contactref element="GVI-1" pad="3"/>
+<contactref element="GVI1" pad="3"/>
 <wire x1="5.3975" y1="63.1825" x2="6.35" y2="62.23" width="0.1524" layer="1"/>
 <wire x1="4.445" y1="63.1825" x2="5.3975" y2="63.1825" width="0.1524" layer="1"/>
 <wire x1="4.445" y1="61.2775" x2="4.445" y2="63.1825" width="0.1524" layer="16"/>
@@ -849,14 +849,14 @@ design rules under a new name.</description>
 </signal>
 <signal name="D14">
 <contactref element="ESP32-RIGHT" pad="5"/>
-<contactref element="GVS" pad="3"/>
+<contactref element="GVS1" pad="3"/>
 <wire x1="3.81" y1="68.58" x2="2.54" y2="67.31" width="0.1524" layer="1"/>
 <wire x1="5.3975" y1="68.58" x2="3.81" y2="68.58" width="0.1524" layer="1"/>
 <wire x1="5.3975" y1="68.58" x2="5.588" y2="68.834" width="0.1524" layer="1"/>
 </signal>
 <signal name="I39">
 <contactref element="ESP32-RIGHT" pad="13"/>
-<contactref element="GVI-2" pad="3"/>
+<contactref element="GVI2" pad="3"/>
 <wire x1="5.715" y1="53.34" x2="6.6675" y2="54.2925" width="0.1524" layer="16"/>
 <wire x1="5.715" y1="49.8475" x2="5.715" y2="53.34" width="0.1524" layer="16"/>
 <wire x1="2.8575" y1="46.99" x2="5.715" y2="49.8475" width="0.1524" layer="1"/>
@@ -866,19 +866,19 @@ design rules under a new name.</description>
 </signal>
 <signal name="I34">
 <contactref element="ESP32-RIGHT" pad="12"/>
-<contactref element="GVIIS" pad="4"/>
+<contactref element="GVIIS1" pad="4"/>
 <wire x1="4.7625" y1="51.7525" x2="10.4775" y2="51.7525" width="0.1524" layer="1"/>
 <wire x1="2.54" y1="49.53" x2="4.7625" y2="51.7525" width="0.1524" layer="1"/>
 <wire x1="10.4775" y1="51.7525" x2="10.571" y2="51.514" width="0.1524" layer="1"/>
 </signal>
 <signal name="3V3">
 <contactref element="PWR" pad="2"/>
-<contactref element="GVSS" pad="2"/>
-<contactref element="GVIIS" pad="2"/>
-<contactref element="GVSSS" pad="2"/>
-<contactref element="GVI-2" pad="2"/>
-<contactref element="GVI-1" pad="2"/>
-<contactref element="GVS" pad="2"/>
+<contactref element="GVSS1" pad="2"/>
+<contactref element="GVIIS1" pad="2"/>
+<contactref element="GVSSS1" pad="2"/>
+<contactref element="GVI2" pad="2"/>
+<contactref element="GVI1" pad="2"/>
+<contactref element="GVS1" pad="2"/>
 <wire x1="8.255" y1="73.9775" x2="5.715" y2="71.4375" width="0.1524" layer="1"/>
 <wire x1="8.255" y1="77.47" x2="8.255" y2="73.9775" width="0.1524" layer="1"/>
 <wire x1="5.715" y1="71.4375" x2="5.588" y2="71.374" width="0.1524" layer="1"/>
