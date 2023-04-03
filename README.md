@@ -17,11 +17,21 @@ This design connects one side of an esp32 Dev Module (ESP32-RIGHT) to a LCD touc
 
 ## ESP32 I/O Adapter
 This design connects the left side of an esp32 Dev Module to JST ZH 1.5mm keyed connectors. The connectors include
-* 1 each 2 pin GS connector (switch)
-* 3 each 3 pin GVS connectors (potentiomer, servo motor, etc)
-* 1 each 4 pin GVSS connector (serial port)
-* 2 each 5 pin GVSSS connectors (thumb joystick)
+JST ZH 1.5mm keyed connectors. 
 
+The connectors include
+* 2 each 3 pin GVI connectors (potentiomer, etc). 
+* 1 each 4 pin GVSS connector (serial port, I2C, etc)
+* 1 each 5 pin GVSSS connectors (joystick, misc)
+* 1 each 5 pin GVIIS connectors (joystick, misc)
+
+0.1 inch connectors
+* 1 each 2 pin GS connector  (switch)
+* 1 each 3 pin GVS connector (servo motor, etc). 
+
+Note:
+*  GVS.. == Ground / 3v3 / Sense GPIO
+*  GVI.. == Ground / 3v3 / Input only GPIO
 ## ESP32 Audio / Relay Adapter
 This design connects left side of an esp32 Dev Module to:
 * A three channel relay board
