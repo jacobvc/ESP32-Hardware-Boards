@@ -1,14 +1,14 @@
 # Left Side IO Connectors
 
-JST ZH 1.5mm keyed connectors. The connectors include
-* 2 each 3 pin GVI connectors (potentiometer, etc). 
-* 1 each 4 pin GVSS connector (serial port, I2C, etc)
-* 1 each 5 pin GVSSS connectors (joystick, misc)
-* 1 each 5 pin GVIIS connectors (joystick, misc)
-
 0.1 inch connectors
 * 1 each 2 pin GS connector  (switch)
 * 1 each 3 pin GVS connector (servo motor, etc). 
+
+JST ZH 1.5mm keyed connectors. The connectors include
+* 2 each 3 pin GVI connectors (potentiometer, etc). 
+* 1 each 4 pin GVSS connector (serial port, I2C, etc)
+* 1 each 5 pin GVIIS connectors (joystick, misc)
+* 1 each 5 pin GVSSS connectors (joystick, misc)
 
 Note:
 *  GVS.. == Ground / 3v3 / Sense GPIO
