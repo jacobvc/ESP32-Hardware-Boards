@@ -7,8 +7,8 @@
 JST ZH 1.5mm keyed connectors. The connectors include
 * 2 each 3 pin GVI connectors (potentiometer, etc). 
 * 1 each 4 pin GVSS connector (serial port, I2C, etc)
-* 1 each 5 pin GVIIS connectors (joystick, misc)
 * 1 each 5 pin GVSSS connectors (joystick, misc)
+* 1 each 5 pin GVIIS connectors (joystick, misc)
 
 Note:
 *  GVS.. == Ground / 3v3 / Sense GPIO
