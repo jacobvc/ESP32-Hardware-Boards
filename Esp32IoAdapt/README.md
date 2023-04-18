@@ -13,6 +13,7 @@ JST ZH 1.5mm keyed connectors. The connectors include
 Note:
 *  GVS.. == Ground / 3v3 / Sense GPIO
 *  GVI.. == Ground / 3v3 / Input only GPIO
+*  The "V" pins are all 3.3v, so they may not be suited for 5V devices such as 5V servo motors
 
 ![Top Side](/assets/Esp32IoAdaptTop.png "Top View")
 ![Bottom Side](/assets/Esp32IoAdaptBottom.png "Bottom View")
