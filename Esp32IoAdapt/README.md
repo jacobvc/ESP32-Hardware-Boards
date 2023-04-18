@@ -1,4 +1,4 @@
-# Left Side IO Connectors
+# Left Side IO Adapter
 
 0.1 inch connectors
 * 1 each 2 pin GS connector  (switch)

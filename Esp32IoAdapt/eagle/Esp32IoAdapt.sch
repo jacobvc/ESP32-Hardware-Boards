@@ -3259,14 +3259,14 @@ CONN_03
 </classes>
 <parts>
 <part name="ESP32-RIGHT" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X15" device="" package3d_urn="urn:adsk.eagle:package:22424/2" value="0"/>
-<part name="GVI-1" library="jst" deviceset="B3B-ZR" device=""/>
-<part name="GVI-2" library="jst" deviceset="B3B-ZR" device=""/>
-<part name="GVSSS" library="jst" deviceset="B5B-ZR" device=""/>
-<part name="GVIIS" library="jst" deviceset="B5B-ZR" device=""/>
-<part name="GVSS" library="jst" deviceset="B4B-ZR" device=""/>
-<part name="GS" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
+<part name="GVI1" library="jst" deviceset="B3B-ZR" device=""/>
+<part name="GVI2" library="jst" deviceset="B3B-ZR" device=""/>
+<part name="GVSSS1" library="jst" deviceset="B5B-ZR" device=""/>
+<part name="GVIIS1" library="jst" deviceset="B5B-ZR" device=""/>
+<part name="GVSS1" library="jst" deviceset="B4B-ZR" device=""/>
+<part name="GS1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
 <part name="PWR" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
-<part name="GVS" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_03" device="" package3d_urn="urn:adsk.eagle:package:38063/1"/>
+<part name="GVS1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_03" device="" package3d_urn="urn:adsk.eagle:package:38063/1"/>
 </parts>
 <sheets>
 <sheet>
@@ -3276,27 +3276,27 @@ CONN_03
 <instance part="ESP32-RIGHT" gate="A" x="58.42" y="68.58" smashed="yes" rot="MR0">
 <attribute name="NAME" x="74.93" y="89.535" size="1.778" layer="95" rot="MR0"/>
 </instance>
-<instance part="GVI-1" gate="G$1" x="101.6" y="83.82" smashed="yes">
+<instance part="GVI1" gate="G$1" x="101.6" y="83.82" smashed="yes">
 <attribute name="NAME" x="99.06" y="89.662" size="1.27" layer="95"/>
 <attribute name="VALUE" x="99.06" y="76.962" size="1.27" layer="96"/>
 </instance>
-<instance part="GVI-2" gate="G$1" x="101.6" y="68.58" smashed="yes">
+<instance part="GVI2" gate="G$1" x="101.6" y="68.58" smashed="yes">
 <attribute name="NAME" x="99.06" y="74.422" size="1.27" layer="95"/>
 <attribute name="VALUE" x="99.06" y="61.722" size="1.27" layer="96"/>
 </instance>
-<instance part="GVSSS" gate="G$1" x="134.62" y="81.28" smashed="yes">
+<instance part="GVSSS1" gate="G$1" x="134.62" y="81.28" smashed="yes">
 <attribute name="NAME" x="132.08" y="89.662" size="1.27" layer="95"/>
 <attribute name="VALUE" x="132.08" y="71.882" size="1.27" layer="96"/>
 </instance>
-<instance part="GVIIS" gate="G$1" x="134.62" y="58.42" smashed="yes">
+<instance part="GVIIS1" gate="G$1" x="134.62" y="58.42" smashed="yes">
 <attribute name="NAME" x="132.08" y="66.802" size="1.27" layer="95"/>
 <attribute name="VALUE" x="132.08" y="49.022" size="1.27" layer="96"/>
 </instance>
-<instance part="GVSS" gate="G$1" x="101.6" y="50.8" smashed="yes">
+<instance part="GVSS1" gate="G$1" x="101.6" y="50.8" smashed="yes">
 <attribute name="NAME" x="101.6" y="54.102" size="1.27" layer="95"/>
 <attribute name="VALUE" x="101.6" y="41.402" size="1.27" layer="96"/>
 </instance>
-<instance part="GS" gate="G$1" x="134.62" y="40.64" smashed="yes" rot="R180">
+<instance part="GS1" gate="G$1" x="134.62" y="40.64" smashed="yes" rot="R180">
 <attribute name="VALUE" x="137.16" y="45.466" size="1.778" layer="96" font="vector" rot="R180"/>
 <attribute name="NAME" x="137.16" y="35.052" size="1.778" layer="95" font="vector" rot="R180"/>
 </instance>
@@ -3304,7 +3304,7 @@ CONN_03
 <attribute name="VALUE" x="58.42" y="33.274" size="1.778" layer="96" font="vector"/>
 <attribute name="NAME" x="58.42" y="43.688" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="GVS" gate="J$1" x="99.06" y="25.4" smashed="yes" rot="R180">
+<instance part="GVS1" gate="J$1" x="99.06" y="25.4" smashed="yes" rot="R180">
 <attribute name="VALUE" x="101.6" y="32.766" size="1.778" layer="96" font="vector" rot="R180"/>
 <attribute name="NAME" x="101.6" y="19.812" size="1.778" layer="95" font="vector" rot="R180"/>
 </instance>
@@ -3326,32 +3326,22 @@ CONN_03
 <label x="71.12" y="83.82" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVI-1" gate="G$1" pin="1"/>
-<wire x1="93.98" y1="86.36" x2="88.9" y2="86.36" width="0.1524" layer="91"/>
-<label x="88.9" y="86.36" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
-<pinref part="GVSSS" gate="G$1" pin="1"/>
+<pinref part="GVSSS1" gate="G$1" pin="1"/>
 <wire x1="127" y1="86.36" x2="121.92" y2="86.36" width="0.1524" layer="91"/>
 <label x="121.92" y="86.36" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVI-2" gate="G$1" pin="1"/>
-<wire x1="93.98" y1="71.12" x2="88.9" y2="71.12" width="0.1524" layer="91"/>
-<label x="88.9" y="71.12" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
-<pinref part="GVIIS" gate="G$1" pin="1"/>
+<pinref part="GVIIS1" gate="G$1" pin="1"/>
 <wire x1="127" y1="63.5" x2="121.92" y2="63.5" width="0.1524" layer="91"/>
 <label x="121.92" y="63.5" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GS" gate="G$1" pin="1"/>
+<pinref part="GS1" gate="G$1" pin="1"/>
 <wire x1="127" y1="40.64" x2="121.92" y2="40.64" width="0.1524" layer="91"/>
 <label x="121.92" y="40.64" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVSS" gate="G$1" pin="1"/>
+<pinref part="GVSS1" gate="G$1" pin="1"/>
 <wire x1="93.98" y1="53.34" x2="88.9" y2="53.34" width="0.1524" layer="91"/>
 <label x="88.9" y="53.34" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3363,7 +3353,17 @@ CONN_03
 <segment>
 <wire x1="91.44" y1="27.94" x2="88.9" y2="27.94" width="0.1524" layer="91"/>
 <label x="88.9" y="27.94" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="GVS" gate="J$1" pin="1"/>
+<pinref part="GVS1" gate="J$1" pin="1"/>
+</segment>
+<segment>
+<pinref part="GVI2" gate="G$1" pin="3"/>
+<wire x1="93.98" y1="66.04" x2="88.9" y2="66.04" width="0.1524" layer="91"/>
+<label x="88.9" y="66.04" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="GVI1" gate="G$1" pin="3"/>
+<wire x1="93.98" y1="81.28" x2="88.9" y2="81.28" width="0.1524" layer="91"/>
+<label x="88.9" y="81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D13" class="0">
@@ -3373,7 +3373,7 @@ CONN_03
 <label x="71.12" y="81.28" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVSS" gate="G$1" pin="4"/>
+<pinref part="GVSS1" gate="G$1" pin="4"/>
 <wire x1="93.98" y1="45.72" x2="88.9" y2="45.72" width="0.1524" layer="91"/>
 <label x="88.9" y="45.72" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3385,7 +3385,7 @@ CONN_03
 <label x="71.12" y="78.74" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVSS" gate="G$1" pin="3"/>
+<pinref part="GVSS1" gate="G$1" pin="3"/>
 <wire x1="93.98" y1="48.26" x2="88.9" y2="48.26" width="0.1524" layer="91"/>
 <label x="88.9" y="48.26" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3397,7 +3397,7 @@ CONN_03
 <label x="71.12" y="73.66" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GS" gate="G$1" pin="2"/>
+<pinref part="GS1" gate="G$1" pin="2"/>
 <wire x1="127" y1="38.1" x2="121.92" y2="38.1" width="0.1524" layer="91"/>
 <label x="121.92" y="38.1" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3409,7 +3409,7 @@ CONN_03
 <label x="71.12" y="71.12" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVSSS" gate="G$1" pin="5"/>
+<pinref part="GVSSS1" gate="G$1" pin="5"/>
 <wire x1="127" y1="76.2" x2="121.92" y2="76.2" width="0.1524" layer="91"/>
 <label x="121.92" y="76.2" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3421,7 +3421,7 @@ CONN_03
 <label x="71.12" y="68.58" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVIIS" gate="G$1" pin="5"/>
+<pinref part="GVIIS1" gate="G$1" pin="5"/>
 <wire x1="127" y1="53.34" x2="121.92" y2="53.34" width="0.1524" layer="91"/>
 <label x="121.92" y="53.34" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3433,7 +3433,7 @@ CONN_03
 <label x="71.12" y="66.04" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVSSS" gate="G$1" pin="3"/>
+<pinref part="GVSSS1" gate="G$1" pin="3"/>
 <wire x1="127" y1="81.28" x2="121.92" y2="81.28" width="0.1524" layer="91"/>
 <label x="121.92" y="81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3445,7 +3445,7 @@ CONN_03
 <label x="71.12" y="63.5" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVSSS" gate="G$1" pin="4"/>
+<pinref part="GVSSS1" gate="G$1" pin="4"/>
 <wire x1="127" y1="78.74" x2="121.92" y2="78.74" width="0.1524" layer="91"/>
 <label x="121.92" y="78.74" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3457,7 +3457,7 @@ CONN_03
 <label x="71.12" y="60.96" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVIIS" gate="G$1" pin="3"/>
+<pinref part="GVIIS1" gate="G$1" pin="3"/>
 <wire x1="127" y1="58.42" x2="121.92" y2="58.42" width="0.1524" layer="91"/>
 <label x="121.92" y="58.42" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3469,9 +3469,9 @@ CONN_03
 <label x="71.12" y="53.34" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVI-1" gate="G$1" pin="3"/>
-<wire x1="93.98" y1="81.28" x2="88.9" y2="81.28" width="0.1524" layer="91"/>
-<label x="88.9" y="81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="GVI1" gate="G$1" pin="1"/>
+<wire x1="93.98" y1="86.36" x2="88.9" y2="86.36" width="0.1524" layer="91"/>
+<label x="88.9" y="86.36" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="RESET" class="0">
@@ -3490,7 +3490,7 @@ CONN_03
 <segment>
 <wire x1="91.44" y1="22.86" x2="88.9" y2="22.86" width="0.1524" layer="91"/>
 <label x="88.9" y="22.86" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="GVS" gate="J$1" pin="3"/>
+<pinref part="GVS1" gate="J$1" pin="3"/>
 </segment>
 </net>
 <net name="I39" class="0">
@@ -3500,9 +3500,9 @@ CONN_03
 <label x="71.12" y="55.88" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVI-2" gate="G$1" pin="3"/>
-<wire x1="93.98" y1="66.04" x2="88.9" y2="66.04" width="0.1524" layer="91"/>
-<label x="88.9" y="66.04" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="GVI2" gate="G$1" pin="1"/>
+<wire x1="93.98" y1="71.12" x2="88.9" y2="71.12" width="0.1524" layer="91"/>
+<label x="88.9" y="71.12" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="I34" class="0">
@@ -3512,7 +3512,7 @@ CONN_03
 <label x="71.12" y="58.42" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVIIS" gate="G$1" pin="4"/>
+<pinref part="GVIIS1" gate="G$1" pin="4"/>
 <wire x1="127" y1="55.88" x2="121.92" y2="55.88" width="0.1524" layer="91"/>
 <label x="121.92" y="55.88" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3524,34 +3524,34 @@ CONN_03
 <label x="73.66" y="40.64" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVSS" gate="G$1" pin="2"/>
+<pinref part="GVSS1" gate="G$1" pin="2"/>
 <wire x1="93.98" y1="50.8" x2="88.9" y2="50.8" width="0.1524" layer="91"/>
 <label x="88.9" y="50.8" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVIIS" gate="G$1" pin="2"/>
+<pinref part="GVIIS1" gate="G$1" pin="2"/>
 <wire x1="127" y1="60.96" x2="121.92" y2="60.96" width="0.1524" layer="91"/>
 <label x="121.92" y="60.96" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVSSS" gate="G$1" pin="2"/>
+<pinref part="GVSSS1" gate="G$1" pin="2"/>
 <wire x1="127" y1="83.82" x2="121.92" y2="83.82" width="0.1524" layer="91"/>
 <label x="121.92" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVI-2" gate="G$1" pin="2"/>
+<pinref part="GVI2" gate="G$1" pin="2"/>
 <wire x1="93.98" y1="68.58" x2="88.9" y2="68.58" width="0.1524" layer="91"/>
 <label x="88.9" y="68.58" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="GVI-1" gate="G$1" pin="2"/>
+<pinref part="GVI1" gate="G$1" pin="2"/>
 <wire x1="93.98" y1="83.82" x2="88.9" y2="83.82" width="0.1524" layer="91"/>
 <label x="88.9" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <wire x1="91.44" y1="25.4" x2="88.9" y2="25.4" width="0.1524" layer="91"/>
 <label x="88.9" y="25.4" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="GVS" gate="J$1" pin="2"/>
+<pinref part="GVS1" gate="J$1" pin="2"/>
 </segment>
 </net>
 </nets>
