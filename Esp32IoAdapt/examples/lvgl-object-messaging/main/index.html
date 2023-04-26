@@ -1,0 +1,154 @@
+<html>
+<head>
+<script>
+var ws = null;
+
+window.onbeforeunload = () => {
+ // ws.flush();
+  ws.close(1000, "Work Complete");
+ // return "Should have disconnected";
+};
+function connect() {
+  if (ws) {
+    ws.close();
+  }
+  ws = new WebSocket('ws://' + location.host + '/ws');
+  status("connecting");
+
+ws.onopen = function(e) {
+  status("");
+};
+
+ws.onclose = function(event) {
+  if (event.wasClean) {
+    status("Connection closed cleanly, code=${event.code} reason=${event.reason}. Trying to reconnect");
+  } else {
+    // e.g. server process killed or network down
+    // event.code is usually 1006 in this case
+    status('Connection died. Trying to reconnect');
+  }
+  setTimeout(function() {
+      connect();
+    }, 3000)
+};
+
+ws.onerror = function(error) {
+  status(`[error] ${error.message}`);
+};
+
+ws.onmessage = evt => {
+  //alert(`[message] Data received from server: ${evt.data}`);
+    var obj = JSON.parse(evt.data);
+    var elem = document.getElementById(obj.name);
+    if (elem) {
+      if (obj.name == "temperature" || obj.name == "pressure"){
+        elem.innerText = obj.value;
+      }
+      else if (obj.name == 'servo') {
+        document.querySelector('#servo').value = obj.value;
+        document.querySelector('#position').value = obj.value;
+      }
+      else if (obj.value == 1) {
+        elem.style.backgroundColor = obj.name.substring(0, obj.name.length-3);
+      }
+      else if (obj.value == 0) {
+        elem.style.backgroundColor = "gray";
+      }
+      else if (obj.value == 'down') {
+        elem.style.backgroundColor = "#ff0000";
+      }
+      else {
+        elem.style.backgroundColor = "#4caf50";
+      }
+    }
+  };
+};
+window.onload = () => { connect() }
+
+function status(text) {
+  document.querySelector('#status').innerText = text;
+  document.querySelector('#status').style.color = "red";
+}
+function clickLed(elmt, color) {
+    var param;
+    if (elmt.style.backgroundColor == "gray"
+      || elmt.style.backgroundColor == "") {
+      elmt.style.backgroundColor = color;
+      param = JSON.stringify({ "name": color + "Led", "value": 1});
+   }
+    else {
+      elmt.style.backgroundColor = "gray";
+      param = JSON.stringify({ "name": color + "Led", "value": 0});
+    }
+    ws.send(param);
+}
+function clickButton(elmt) {
+    var param;
+    param = JSON.stringify({ "name": elmt.id, "value": "pressed"});
+    ws.send(param);
+}
+function changeServo(elmt, value) {
+    var param;
+    param = JSON.stringify({ "name": elmt.id, "value": parseInt(value)});
+    document.querySelector('#position').value = value;
+    ws.send(param);
+}
+</script>
+<style>
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  margin: 4px 2px; 
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.button1 {border-radius: 50%; padding: 15; }
+.button2 {border-radius: 50%; padding: 15 10; }
+.led {
+    background-color: Gray; 
+    border: dotted;
+    border-radius: 50%; 
+    padding: 10; 
+}
+</style>
+
+</head>
+<body>
+  <div id="status"></div>
+  <p>
+    <button id="whiteLed" class="button led" 
+        onclick="clickLed(this, 'white')";></button>
+    <button id="blueLed" class="button led"
+        onclick="clickLed(this, 'blue')";></button>
+    <button id="greenLed" class="button led"
+        onclick="clickLed(this, 'green')";></button>
+    <button id="yellowLed" class="button led"
+        onclick="clickLed(this, 'yellow')";></button>
+    <button id="orangeLed" class="button led"
+        onclick="clickLed(this, 'orange')";></button>
+    <button id="redLed" class="button led"
+        onclick="clickLed(this, 'red')";></button>
+
+  <p><button id="offBtn" class="button button1"
+     onclick="clickButton(this)">Off</button>
+  <button id="walkBtn" class="button button2"
+     onclick="clickButton(this)">Walk</button></p>
+  </p>
+  <p><label for="servo">Servo</label>
+  <input type="range" min="0" max="180" value="0" id="servo" 
+    step="1" oninput="changeServo(this, value)">
+  <output for="servo" id="position">0</output></p>
+  <p>
+  Temperature <span id="temperature"></span><br>
+  Pressure <span id="pressure"></span><br>
+</body>
+</html>
+

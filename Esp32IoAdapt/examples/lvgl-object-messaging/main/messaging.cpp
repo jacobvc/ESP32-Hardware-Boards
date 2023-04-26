@@ -5,6 +5,8 @@
 #include "messaging.h"
 #include "Esp32IoAdapt.h"
 
+#include "WebsocketHost.h"
+
 #include <unordered_map>
 
 // Pan-tilt Slider and joystick IDs and logical assignments
@@ -30,6 +32,7 @@
 #define ORIGIN_JOYSTICK 0x02
 #define ORIGIN_SERVO 0x04
 #define ORIGIN_ADC 0x08
+#define ORIGIN_WEBSOCKET 0x10
 
 TaskHandle_t MessageTaskHandle;
 
@@ -39,6 +42,7 @@ AdcHost adc(transport, ORIGIN_ADC, SAMPLE_INTERVAL_MS);
 JoystickHost joysticks(adc, transport, 
   ORIGIN_JOYSTICK, SAMPLE_INTERVAL_MS);
 ServoHost servos(transport, ORIGIN_SERVO);
+WebsocketHost ws(transport, ORIGIN_WEBSOCKET);
 
 static void MessageTask(void *pvParameters)
 {
@@ -100,4 +104,5 @@ void MessagingInit()
     pos = ObjMsgServoData::create(ORIGIN_CONTROLLER, ZOOM_SERVO_X, 0);
     servos.consume(pos);
   }
+  ws.start();
 }
