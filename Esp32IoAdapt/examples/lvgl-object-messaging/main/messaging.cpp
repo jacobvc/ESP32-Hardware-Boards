@@ -72,6 +72,27 @@ static void MessageTask(void *pvParameters)
   }
 }
 
+esp_err_t http_root_handler(httpd_req_t *req)
+{
+    extern const unsigned char index_start[] asm("_binary_index_html_start");
+    extern const unsigned char index_end[]   asm("_binary_index_html_end");
+    const size_t index_size = (index_end - index_start);
+    printf("index.html (%d bytes) from %p to %p\n", index_size, index_start, index_end);
+    httpd_resp_send(req, (const char *)index_start, index_size);
+    return ESP_OK;
+}
+
+
+esp_err_t http_favicon_handler(httpd_req_t *req)
+{
+    extern const unsigned char favicon_start[] asm("_binary_favicon_ico_start");
+    extern const unsigned char favicon_end[]   asm("_binary_favicon_ico_end");
+    const size_t favicon_size = (favicon_end - favicon_start);
+    printf("favicon.ico.html (%d bytes) from %p to %p\n", favicon_size, favicon_end);
+    httpd_resp_send(req, (const char *)favicon_start, favicon_size);
+    return ESP_OK;
+}
+
 void MessagingInit()
 {
   joysticks.add(PT_JOY_NAME, CHANGE_EVENT, 
@@ -104,5 +125,8 @@ void MessagingInit()
     pos = ObjMsgServoData::create(ORIGIN_CONTROLLER, ZOOM_SERVO_X, 0);
     servos.consume(pos);
   }
+
+  ws.Add("/", http_root_handler, false);
+  ws.Add("/favicon.ico", http_favicon_handler, false);
   ws.start();
 }
