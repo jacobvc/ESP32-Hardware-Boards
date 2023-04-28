@@ -401,7 +401,6 @@ var JoyStick = (function(container, parameters, callback)
     this.SetX = function (x)
     {
         movedX = ((x * maxMoveStick / 100.0) + centerX);
-        console.log(movedX)
         context.clearRect(0, 0, canvas.width, canvas.height);
         drawExternal();
         drawInternal();

@@ -29,6 +29,7 @@
 
 // Component names
 #define PT_JOY_NAME "pantilt"
+#define PT_SLIDER_NAME "pantilt_slider"
 #define ZOOM_JOY_NAME "zoom"
 #define ZOOM_SLIDER_NAME "zoom_slider"
 #define ZOOM_SERVO_X "zoom_servo_x"
@@ -138,6 +139,8 @@ void MessagingInit()
   servos.start();
 
   adc.Add(ZOOM_SLIDER_NAME, CHANGE_EVENT, ZOOM_SLIDER, 
+    ADC_ATTEN_DB_11, ADC_BITWIDTH_12, 4096, 0, 100);
+  adc.Add(PT_SLIDER_NAME, CHANGE_EVENT, PT_SLIDER, 
     ADC_ATTEN_DB_11, ADC_BITWIDTH_12, 4096, 0, 100);
   adc.start();
 
