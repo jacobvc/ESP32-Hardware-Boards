@@ -39,136 +39,119 @@
       };
 
       ws.onmessage = evt => {
-        //alert(`[message] Data received from server: ${evt.data}`);
         var obj = JSON.parse(evt.data);
         var elem = document.getElementById(obj.name);
         if (elem) {
-          if (obj.name == 'pantilt') {
-            pantilt.SetX(obj.value.x);
-            pantilt.SetY(obj.value.y);
-          }
-          else if (obj.name == "zoom") {
-            zoom.SetX(obj.value.x);
-            zoom.SetY(obj.value.y);
-          }
-          else if (obj.name == 'zoom_slider') {
-            document.querySelector('#zoom_slider').value = obj.value;
-            document.querySelector('#position').value = obj.value;
-          }
-          else if (obj.value == 1) {
-            elem.style.backgroundColor = obj.name.substring(0, obj.name.length - 3);
-          }
-          else if (obj.value == 0) {
-            elem.style.backgroundColor = "gray";
-          }
-          else if (obj.value == 'down') {
-            elem.style.backgroundColor = "#ff0000";
-          }
-          else {
-            elem.style.backgroundColor = "#4caf50";
+          switch (obj.name) {
+            case 'pantilt':
+              pantilt.SetX(obj.value.x);
+              pantilt.SetY(obj.value.y);
+              break;
+            case "zoom":
+              zoom.SetX(obj.value.x);
+              zoom.SetY(obj.value.y);
+              break;
+            case 'zoom_slider':
+              document.querySelector('#zoom_slider').value = obj.value;
+              break;
+            case 'pantilt_slider':
+              document.querySelector('#pantilt_slider').value = obj.value;
+              break;
+            default:
+              console.log('Object "' + obj.name + '" not found');
+              break;
           }
         }
         else {
-          console.log(obj.name + " not found");
+          console.log('Element "' + obj.name + '" not found');
         }
       };
     };
     window.onload = () => {
-      zoom = new JoyStick('zoom', { "internalStrokeColor": "Black", "internalFillColor": "Gray" });
-      pantilt = new JoyStick('pantilt', { "internalStrokeColor": "Black", "internalFillColor": "Gray" });
+      zoom = new JoyStick('zoom', { "internalStrokeColor": "Black", "internalFillColor": "Gray" },
+        function (stickData) {
+          var param;
+          param = JSON.stringify({ "name": "zoom", "value": { "x": parseInt(stickData.x), "y": parseInt(stickData.y), "up": 0 } });
+          ws.send(param);
+        });
+      pantilt = new JoyStick('pantilt', { "internalStrokeColor": "Black", "internalFillColor": "Gray" },
+        function (stickData) {
+          var param;
+          param = JSON.stringify({ "name": "pantilt", "value": { "x": parseInt(stickData.x), "y": parseInt(stickData.y), "up": 0 } });
+          ws.send(param);
+        });
+
       connect();
     }
 
     function status(text) {
       document.querySelector('#status').innerText = text;
-      document.querySelector('#status').style.color = "red";
-    }
-    function clickLed(elmt, color) {
-      var param;
-      if (elmt.style.backgroundColor == "gray"
-        || elmt.style.backgroundColor == "") {
-        elmt.style.backgroundColor = color;
-        param = JSON.stringify({ "name": color + "Led", "value": 1 });
+      if (text.length > 0) {
+        document.querySelector('#status').classList.add("error")
       }
       else {
-        elmt.style.backgroundColor = "gray";
-        param = JSON.stringify({ "name": color + "Led", "value": 0 });
+        document.querySelector('#status').classList.remove("error")
       }
-      ws.send(param);
     }
     function clickButton(elmt) {
       var param;
       param = JSON.stringify({ "name": elmt.id, "value": "pressed" });
       ws.send(param);
     }
-    function changeServo(elmt, value) {
+    function changeSlider(elmt, value) {
       var param;
       param = JSON.stringify({ "name": elmt.id, "value": parseInt(value) });
-      document.querySelector('#position').value = value;
+      //document.querySelector('#position').value = value;
       ws.send(param);
     }
   </script>
   <style>
-    .button {
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      margin: 4px 2px;
-      text-align: center;
-      text-decoration: none;
+    .enclose {
+      background-color: gainsboro;
+      border-radius: 10px;
+      width: fit-content;
+      padding: 10px;
+    }
+
+    .error {
+      margin: 5px;
+      padding: 2px;
+      border: 2px solid black;
+      color: red;
+      background-color: white;
+    }
+
+    input[type="range"] {
+      appearance: slider-vertical;
+      width: 20px;
+      height: 160px;
+    }
+
+    .joystick {
       display: inline-block;
-      font-size: 16px;
-      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .button:hover {
-      box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .button1 {
-      border-radius: 50%;
-      padding: 15;
-    }
-
-    .button2 {
-      border-radius: 50%;
-      padding: 15 10;
-    }
-
-    .led {
-      background-color: Gray;
-      border: dotted;
-      border-radius: 50%;
-      padding: 10;
+      width: 160px;
+      height: 160px;
+      margin: 5px
     }
   </style>
 
 </head>
 
 <body>
-  <div id="status"></div>
-  <p>
-    <button id="whiteLed" class="button led" onclick="clickLed(this, 'white')" ;></button>
-    <button id="blueLed" class="button led" onclick="clickLed(this, 'blue')" ;></button>
-    <button id="greenLed" class="button led" onclick="clickLed(this, 'green')" ;></button>
-    <button id="yellowLed" class="button led" onclick="clickLed(this, 'yellow')" ;></button>
-    <button id="orangeLed" class="button led" onclick="clickLed(this, 'orange')" ;></button>
-    <button id="redLed" class="button led" onclick="clickLed(this, 'red')" ;></button>
-
-  <p><button id="offBtn" class="button button1" onclick="clickButton(this)">Off</button>
-    <button id="walkBtn" class="button button2" onclick="clickButton(this)">Walk</button>
-  </p>
-  </p>
-  <p><label for="zoom_slider">Servo</label>
-    <input type="range" min="0" max="100" value="0" id="zoom_slider" step="1" oninput="changeServo(this, value)">
-    <output for="zoom_slider" id="position">0</output>
-  </p>
-  <p>
-    Temperature <span id="temperature"></span><br>
-    Pressure <span id="pressure"></span><br>
-  <div id="zoom" style="width:200px;height:200px;margin:50px"></div>
-  <div id="pantilt" style="width:200px;height:200px;margin:50px"></div>
-  </p>
+  <div class="enclose">
+    <h2>
+      <center>ESP32 I/O Adapter Board</center>
+    </h2>
+    
+    <input type="range" min="0" max="100" value="50" id="zoom_slider" step="1" orient="vertical"
+      oninput="changeSlider(this, value)">
+    <div id="zoom" class="joystick"><center>Zoom</center></div>
+    
+    <input type="range" min="0" max="100" value="50" id="pantilt_slider" step="1" orient="vertical"
+      oninput="changeSlider(this, value)">
+    <div id="pantilt" class="joystick"><center>Pan / Tilt</center></div>
+    <div id="status"></div>
+  </div>
 </body>
 
 </html>
