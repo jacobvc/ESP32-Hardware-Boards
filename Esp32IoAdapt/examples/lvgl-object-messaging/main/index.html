@@ -3,7 +3,7 @@
   <script src="joy.js"></script>
 <script>
 var ws = null;
-
+var zoom;
 window.onbeforeunload = () => {
  // ws.flush();
   ws.close(1000, "Work Complete");
@@ -42,8 +42,11 @@ ws.onmessage = evt => {
     var obj = JSON.parse(evt.data);
     var elem = document.getElementById(obj.name);
     if (elem) {
-      if (obj.name == "temperature" || obj.name == "pressure"){
-        elem.innerText = obj.value;
+      if (obj.name == 'servo') {
+      }
+      else if (obj.name == "zoom"){
+        zoom.SetX(obj.value.x);
+        zoom.SetY(obj.value.y);
       }
       else if (obj.name == 'servo') {
         document.querySelector('#servo').value = obj.value;
@@ -65,8 +68,8 @@ ws.onmessage = evt => {
   };
 };
 window.onload = () => {
-  var pantilt = new JoyStick('joy1Div', { "internalStrokeColor": "Black", "internalFillColor": "Gray" });
-   pantilt.SetX(30); connect() }
+  zoom = new JoyStick('zoom', { "internalStrokeColor": "Black", "internalFillColor": "Gray" });
+  zoom.SetX(30); connect() }
 
 function status(text) {
   document.querySelector('#status').innerText = text;
@@ -152,7 +155,7 @@ function changeServo(elmt, value) {
   <p>
   Temperature <span id="temperature"></span><br>
   Pressure <span id="pressure"></span><br>
-  <div id="joy1Div" style="width:200px;height:200px;margin:50px"></div>
+  <div id="zoom" style="width:200px;height:200px;margin:50px"></div>
   </p>
 </body>
 </html>

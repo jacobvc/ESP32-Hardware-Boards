@@ -126,7 +126,7 @@ void SldBacklightChanged(lv_event_t * e)
  *     |_| |_| |_| \__,_||_||_| |_|
  *                                 
  */
-void app_main(void)
+extern "C" void app_main(void)
 {
     // Initialize display and LVGL
     // WARNING the display is initialized with the backlight off to launch flicker
@@ -151,7 +151,7 @@ void app_main(void)
     lv_slider_set_value(ui_sldBacklight, DEFAULT_BACKLIGHT, LV_ANIM_OFF);
     bsp_lcd_set_brightness(DEFAULT_BACKLIGHT);
 
-    ESP_LOGI(TAG, "Startup Complete.");
+    ESP_LOGI(TAG, "Display Startup Complete.");
 
     MessagingInit();
 }
