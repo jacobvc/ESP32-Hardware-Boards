@@ -2,6 +2,8 @@
 
 #include "JoystickHost.h"
 #include "ServoHost.h"
+#include "LvglHost.h"
+#include "binding.h"
 #include "messaging.h"
 #include "Esp32IoAdapt.h"
 
@@ -34,12 +36,13 @@
 #define ZOOM_SLIDER_NAME "zoom_slider"
 #define ZOOM_SERVO_X "zoom_servo_x"
 
-// Endpoint IDs
+// Origin IDs
 #define ORIGIN_CONTROLLER 0x01
 #define ORIGIN_JOYSTICK 0x02
 #define ORIGIN_SERVO 0x04
 #define ORIGIN_ADC 0x08
 #define ORIGIN_WEBSOCKET 0x10
+#define ORIGIN_LVGL 0x20
 
 // Variables
 TaskHandle_t MessageTaskHandle;
@@ -51,6 +54,7 @@ ObjMsgTransport transport(MSG_QUEUE_MAX_DEPTH);
 AdcHost adc(transport, ORIGIN_ADC, SAMPLE_INTERVAL_MS);
 JoystickHost joysticks(adc, transport, ORIGIN_JOYSTICK, SAMPLE_INTERVAL_MS);
 ServoHost servos(transport, ORIGIN_SERVO);
+LvglHost lvgl(transport, ORIGIN_LVGL);
 WebsocketHost ws(transport, ORIGIN_WEBSOCKET);
 
 // Implementation

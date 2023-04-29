@@ -67,14 +67,17 @@
         }
       };
     };
+
     window.onload = () => {
-      zoom = new JoyStick('zoom', { "internalStrokeColor": "Black", "internalFillColor": "Gray" },
+      zoom = new JoyStick('zoom',
+        { "internalStrokeColor": "Black", "internalFillColor": "Gray" },
         function (stickData) {
           var param;
           param = JSON.stringify({ "name": "zoom", "value": { "x": parseInt(stickData.x), "y": parseInt(stickData.y), "up": 0 } });
           ws.send(param);
         });
-      pantilt = new JoyStick('pantilt', { "internalStrokeColor": "Black", "internalFillColor": "Gray" },
+      pantilt = new JoyStick('pantilt',
+        { "internalStrokeColor": "Black", "internalFillColor": "Gray" },
         function (stickData) {
           var param;
           param = JSON.stringify({ "name": "pantilt", "value": { "x": parseInt(stickData.x), "y": parseInt(stickData.y), "up": 0 } });
@@ -93,11 +96,6 @@
         document.querySelector('#status').classList.remove("error")
       }
     }
-    function clickButton(elmt) {
-      var param;
-      param = JSON.stringify({ "name": elmt.id, "value": "pressed" });
-      ws.send(param);
-    }
     function changeSlider(elmt, value) {
       var param;
       param = JSON.stringify({ "name": elmt.id, "value": parseInt(value) });
@@ -106,6 +104,11 @@
     }
   </script>
   <style>
+    h2,
+    h3 {
+      margin: 2px;
+    }
+
     .enclose {
       background-color: gainsboro;
       border-radius: 10px;
@@ -134,7 +137,6 @@
       margin: 5px
     }
   </style>
-
 </head>
 
 <body>
@@ -142,14 +144,20 @@
     <h2>
       <center>ESP32 I/O Adapter Board</center>
     </h2>
-    
+
     <input type="range" min="0" max="100" value="50" id="zoom_slider" step="1" orient="vertical"
       oninput="changeSlider(this, value)">
-    <div id="zoom" class="joystick"><center>Zoom</center></div>
-    
+    <div id="zoom" class="joystick">
+      <h3>
+        <center>Zoom</center>
+      </h3>
+    </div>
+
     <input type="range" min="0" max="100" value="50" id="pantilt_slider" step="1" orient="vertical"
       oninput="changeSlider(this, value)">
-    <div id="pantilt" class="joystick"><center>Pan / Tilt</center></div>
+    <div id="pantilt" class="joystick">
+      <h3><center>Pan / Tilt</center></h3>
+    </div>
     <div id="status"></div>
   </div>
 </body>
