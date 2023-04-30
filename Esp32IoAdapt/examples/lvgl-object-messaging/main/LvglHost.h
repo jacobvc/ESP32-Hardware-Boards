@@ -22,7 +22,7 @@ class LvglHost : public ObjMsgHost
   {
     const char *name;
     lv_obj_t *obj;
-    enum BindingTypes type;
+    enum ControlType type;
   } control_reg_def_t;
 
 public:
@@ -31,20 +31,20 @@ public:
   {
   }
 
-  int addConsumer(const char *name, lv_obj_t *control, enum BindingTypes binding, uint32_t eventFlags)
+  int addConsumer(const char *name, lv_obj_t *control, enum ControlType binding, uint32_t eventFlags)
   {
     control_reg_def_t def = {.name = name, .obj = control, .type = binding};
     consume_map[name] = def;
 
     return true;
   }
-  int addProducer(const char *name, lv_obj_t *control, enum BindingTypes binding, uint32_t eventFlags)
+  int addProducer(const char *name, lv_obj_t *control, enum ControlType binding, uint32_t eventFlags)
   {
     control_reg_def_t def = {.name = name, .obj = control, .type = binding};
     produce_map[control] = def;
 
-    // Store name in user_data for lookup
-    lv_obj_add_event_cb(control, publish_cb, LV_EVENT_ALL, this);
+    // Store this object in user_data for lookup
+    lv_obj_add_event_cb(control, produce_cb, LV_EVENT_ALL, this);
 
     return true;
   }
@@ -61,20 +61,35 @@ public:
 
   bool consume(ObjMsgDataRef data)
   {
+    string str;
     ObjMsgData *msg = data.get();
     control_reg_def_t *ctx = GetConsumer(msg->GetName());
-    if (ctx) {
+    if (ctx)
+    {
       switch (ctx->type)
       {
-      case BUTTON_ID:
-        /* code */
+      case LABEL_CT:
+        msg->serializeValue(str);
+        lv_label_set_text(ctx->obj, str.c_str());
         break;
-      
+      case TEXTAREA_CT:
+      case COMBO_CT:
+      case LED_CT:
+      case GAUGE_CT:
+      case BUTTON_CT:
+      case SLIDER_CT:
+      case SWITCH_CT:
       default:
-        break;
+        ESP_LOGE(TAG, "consume type (%d) NOT IMPLEMENTED", ctx->type);
+
+        return false;
       }
     }
-    return false;
+    else {
+      ESP_LOGE(TAG, "consume name (%s) NOT REGISTERED", msg->GetName().c_str());
+      return  false;
+    }
+    return true;
   }
 
 protected:
@@ -103,14 +118,31 @@ protected:
       return NULL;
     }
   }
-  static void publish_cb(lv_event_t *event)
+  static void produce_cb(lv_event_t *event)
   {
     LvglHost *host = (LvglHost *)event->user_data;
     control_reg_def_t *ctx = host->GetProducer(event->target);
     if (ctx)
     {
-      // Publish(ctx, event);
+      switch (ctx->type)
+      {
+      case LABEL_CT:
+      case TEXTAREA_CT:
+      case COMBO_CT:
+      case LED_CT:
+      case GAUGE_CT:
+      case BUTTON_CT:
+      case SLIDER_CT:
+      case SWITCH_CT:
+      default:
+         ESP_LOGE(host->TAG, "produce type (%d) NOT IMPLEMENTED", ctx->type);
+         break;
+      }
     }
+    else {
+      ESP_LOGE(host->TAG, "produce event NOT REGISTERED");
+    }
+    // host->produce();
   }
 
   std::unordered_map<std::string, control_reg_def_t> consume_map;

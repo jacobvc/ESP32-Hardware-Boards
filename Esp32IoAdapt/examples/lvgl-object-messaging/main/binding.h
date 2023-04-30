@@ -1,15 +1,15 @@
 #pragma once
 
 
-enum BindingTypes {
-    LABEL_ID,
-    TEXTAREA_ID,
-    COMBO_ID,
-    LED_ID,
-    GAUGE_ID,
-    BUTTON_ID,
-    SLIDER_ID,
-    SWITCH_ID,
+enum ControlType {
+    LABEL_CT,
+    TEXTAREA_CT,
+    COMBO_CT,
+    LED_CT,
+    GAUGE_CT,
+    BUTTON_CT,
+    SLIDER_CT,
+    SWITCH_CT,
 };
 
 class LvglHost;
