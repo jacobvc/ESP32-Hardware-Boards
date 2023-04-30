@@ -69,7 +69,7 @@ public:
       switch (ctx->type)
       {
       case LABEL_CT:
-        msg->serializeValue(str);
+        msg->GetValue(str);
         lv_label_set_text(ctx->obj, str.c_str());
         break;
       case TEXTAREA_CT:

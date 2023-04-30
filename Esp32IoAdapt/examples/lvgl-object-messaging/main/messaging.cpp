@@ -36,13 +36,13 @@
 #define ZOOM_SLIDER_NAME "zoom_slider"
 #define ZOOM_SERVO_X "zoom_servo_x"
 
-// Origin IDs
-#define ORIGIN_CONTROLLER 0x01
-#define ORIGIN_JOYSTICK 0x02
-#define ORIGIN_SERVO 0x04
-#define ORIGIN_ADC 0x08
-#define ORIGIN_WEBSOCKET 0x10
-#define ORIGIN_LVGL 0x20
+// Origin IDs (singe bit values)
+#define ORIGIN_CONTROLLER (1 << 0)
+#define ORIGIN_JOYSTICK   (1 << 1)
+#define ORIGIN_SERVO      (1 << 2)
+#define ORIGIN_ADC        (1 << 3)
+#define ORIGIN_WEBSOCKET  (1 << 4)
+#define ORIGIN_LVGL       (1 << 5)
 
 // Variables
 TaskHandle_t MessageTaskHandle;
@@ -67,14 +67,14 @@ static void MessageTask(void *pvParameters)
   {
     if (transport.receive(data, wait))
     {
-      if ((data.get()->GetOrigin() & ORIGIN_WEBSOCKET) == 0) {
+      if (!data.get()->IsFrom(ORIGIN_WEBSOCKET)) {
         ws.consume(data);
       }
       ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data.get());
       if (jsd && jsd->GetName().compare(ZOOM_JOY_NAME) == 0)
       {
         joystick_sample_t sample;
-        jsd->GetValue(sample);
+        jsd->GetRawValue(sample);
         ObjMsgDataRef servo = ObjMsgServoData::create(
           jsd->GetOrigin(), ZOOM_SERVO_X, sample.x);
         servos.consume(servo);
@@ -82,7 +82,7 @@ static void MessageTask(void *pvParameters)
       else
       {
         string str;
-        data.get()->serializeJson(str);
+        data.get()->serializeObject(str);
         printf("JSON: %s\n", str.c_str());
       }
     }
@@ -147,6 +147,9 @@ void MessagingInit()
   adc.Add(PT_SLIDER_NAME, CHANGE_EVENT, PT_SLIDER, 
     ADC_ATTEN_DB_11, ADC_BITWIDTH_12, 4096, 0, 100);
   adc.start();
+
+  ui_binding_init(lvgl);
+  lvgl.start();
 
   xTaskCreate(MessageTask, "MessageTask",
               CONFIG_ESP_MINIMAL_SHARED_STACK_SIZE + 128, NULL,
