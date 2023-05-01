@@ -36,9 +36,9 @@
 #define PT_SLIDER_NAME "pantilt_slider"
 #define ZOOM_JOY_NAME "zoom"
 #define ZOOM_SLIDER_NAME "zoom_slider"
-#define ZOOM_SERVO_X "zoom_servo_x"
+#define ZOOM_SERVO_X_NAME "zoom_servo_x"
 
-// Origin IDs (singe bit values)
+// Origin IDs (bit values)
 #define ORIGIN_CONTROLLER (1 << 0)
 #define ORIGIN_JOYSTICK   (1 << 1)
 #define ORIGIN_SERVO      (1 << 2)
@@ -82,7 +82,7 @@ static void MessageTask(void *pvParameters)
         joystick_sample_t sample;
         jsd->GetRawValue(sample);
         ObjMsgDataRef servo = ObjMsgServoData::create(
-          jsd->GetOrigin(), ZOOM_SERVO_X, sample.x);
+          jsd->GetOrigin(), ZOOM_SERVO_X_NAME, sample.x);
         servos.consume(servo);
       }
       else
@@ -145,7 +145,7 @@ void MessagingInit()
     ZOOM_JOY_CHANS[1], ZOOM_JOY_CHANS[0], ZOOM_JOY_PINS[2]);
   joysticks.start();
 
-  servos.add(ZOOM_SERVO_X, ZOOM_SERVO_X_PIN);
+  servos.add(ZOOM_SERVO_X_NAME, ZOOM_SERVO_X_PIN);
   servos.start();
 
   adc.Add(ZOOM_SLIDER_NAME, CHANGE_EVENT, ZOOM_SLIDER, 
@@ -158,20 +158,20 @@ void MessagingInit()
   lvgl.start();
 
   xTaskCreate(MessageTask, "MessageTask",
-              CONFIG_ESP_MINIMAL_SHARED_STACK_SIZE + 128, NULL,
+              CONFIG_ESP_MINIMAL_SHARED_STACK_SIZE + 1024, NULL,
               tskIDLE_PRIORITY, &MessageTaskHandle);
 
   // Test the servo
   if (0)
   {
     ObjMsgDataRef pos = ObjMsgServoData::create(ORIGIN_CONTROLLER, 
-      ZOOM_SERVO_X, -90);
+      ZOOM_SERVO_X_NAME, -90);
     servos.consume(pos);
     vTaskDelay(pdMS_TO_TICKS(2000));
-    pos = ObjMsgServoData::create(ORIGIN_CONTROLLER, ZOOM_SERVO_X, 90);
+    pos = ObjMsgServoData::create(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 90);
     servos.consume(pos);
     vTaskDelay(pdMS_TO_TICKS(2000));
-    pos = ObjMsgServoData::create(ORIGIN_CONTROLLER, ZOOM_SERVO_X, 0);
+    pos = ObjMsgServoData::create(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 0);
     servos.consume(pos);
   }
 

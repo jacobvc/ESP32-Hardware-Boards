@@ -72,14 +72,32 @@ public:
     {
       switch (ctx->type)
       {
+      case ARC_CT:
+      case BUTTON_CT:
+        ESP_LOGE(TAG, "consume type (%d) NOT IMPLEMENTED", ctx->type);
+        return false;
+      case IMAGE_CT:
+        ESP_LOGE(TAG, "consume type (%d) NOT IMPLEMENTED", ctx->type);
+        return false;
       case LABEL_CT:
         msg->GetValue(strVal);
         lv_label_set_text(ctx->obj, strVal.c_str());
         break;
+      case PANEL_CT:
       case TEXTAREA_CT:
         msg->GetValue(strVal);
+        printf("setting %s to; %s\n", msg->GetName().c_str(), strVal.c_str());
         lv_textarea_set_text(ctx->obj, strVal.c_str());
         break;
+      case CALENDAR_CT:
+      case CHECKBOX_CT:
+      case COLORWHEEL_CT:
+      case DROPDOWN_CT:
+      case IMGBUTTON_CT:
+      case KEYBOARD_CT:
+      case ROLLER_CT:
+        ESP_LOGE(TAG, "consume type (%d) NOT IMPLEMENTED", ctx->type);
+        return false;
       case SLIDER_CT:
         if (msg->GetValue(intVal))
         {
@@ -90,14 +108,9 @@ public:
           ESP_LOGE(TAG, "consume name (%s) value must be integer", msg->GetName().c_str());
         }
         break;
-      case COMBO_CT:
-      case LED_CT:
-      case GAUGE_CT:
-      case BUTTON_CT:
       case SWITCH_CT:
       default:
         ESP_LOGE(TAG, "consume type (%d) NOT IMPLEMENTED", ctx->type);
-
         return false;
       }
     }
@@ -142,29 +155,48 @@ protected:
     control_reg_def_t *ctx = host->GetProducer(event->target);
     if (ctx)
     {
-      if (event->code == ctx->eventCode)
+      if (lv_event_get_code(event) == ctx->eventCode)
       {
         switch (ctx->type)
         {
+        case ARC_CT:
+          ESP_LOGE(host->TAG, "produce type (%d) NOT IMPLEMENTED", ctx->type);
+          break;
+        case BUTTON_CT:
+          data = ObjMsgDataInt::create(host->origin_id, ctx->name, 
+            (lv_obj_get_state(ctx->obj) & LV_STATE_PRESSED) ? 1 : 0);
+          host->produce(data);
+          break;
+        case IMAGE_CT:
+          ESP_LOGE(host->TAG, "produce type (%d) NOT IMPLEMENTED", ctx->type);
+          break;
         case LABEL_CT:
           data = ObjMsgDataString::create(
               host->origin_id, ctx->name, lv_label_get_text(ctx->obj));
           host->produce(data);
+          break;
+        case PANEL_CT:
+          ESP_LOGE(host->TAG, "produce type (PANEL_CT) NOT IMPLEMENTED");
           break;
         case TEXTAREA_CT:
           data = ObjMsgDataString::create(
               host->origin_id, ctx->name, lv_textarea_get_text(ctx->obj));
           host->produce(data);
           break;
+        case CALENDAR_CT:
+        case CHECKBOX_CT:
+        case COLORWHEEL_CT:
+        case DROPDOWN_CT:
+        case IMGBUTTON_CT:
+        case KEYBOARD_CT:
+        case ROLLER_CT:
+          ESP_LOGE(host->TAG, "produce type (%d) NOT IMPLEMENTED", ctx->type);
+          break;
         case SLIDER_CT:
           data = ObjMsgDataInt::create(
               host->origin_id, ctx->name, lv_slider_get_value(ctx->obj));
           host->produce(data);
           break;
-        case COMBO_CT:
-        case LED_CT:
-        case GAUGE_CT:
-        case BUTTON_CT:
         case SWITCH_CT:
         default:
           ESP_LOGE(host->TAG, "produce type (%d) NOT IMPLEMENTED", ctx->type);
