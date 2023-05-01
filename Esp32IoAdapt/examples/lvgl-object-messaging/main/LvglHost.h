@@ -61,7 +61,8 @@ public:
 
   bool consume(ObjMsgDataRef data)
   {
-    string str;
+    string strVal;
+    int intVal;
     ObjMsgData *msg = data.get();
     control_reg_def_t *ctx = GetConsumer(msg->GetName());
     if (ctx)
@@ -69,15 +70,26 @@ public:
       switch (ctx->type)
       {
       case LABEL_CT:
-        msg->GetValue(str);
-        lv_label_set_text(ctx->obj, str.c_str());
+        msg->GetValue(strVal);
+        lv_label_set_text(ctx->obj, strVal.c_str());
         break;
       case TEXTAREA_CT:
+        msg->GetValue(strVal);
+        lv_textarea_set_text(ctx->obj, strVal.c_str());
+        break;
+      case SLIDER_CT:
+        if (msg->GetValue(intVal)) {
+          lv_slider_set_value(ctx->obj, intVal, LV_ANIM_OFF);
+        }
+        else 
+        {
+          ESP_LOGE(TAG, "consume name (%s) value must be integer", msg->GetName().c_str());
+        }
+        break;
       case COMBO_CT:
       case LED_CT:
       case GAUGE_CT:
       case BUTTON_CT:
-      case SLIDER_CT:
       case SWITCH_CT:
       default:
         ESP_LOGE(TAG, "consume type (%d) NOT IMPLEMENTED", ctx->type);
@@ -85,9 +97,10 @@ public:
         return false;
       }
     }
-    else {
+    else
+    {
       ESP_LOGE(TAG, "consume name (%s) NOT REGISTERED", msg->GetName().c_str());
-      return  false;
+      return false;
     }
     return true;
   }
@@ -120,6 +133,7 @@ protected:
   }
   static void produce_cb(lv_event_t *event)
   {
+    ObjMsgDataRef data;
     LvglHost *host = (LvglHost *)event->user_data;
     control_reg_def_t *ctx = host->GetProducer(event->target);
     if (ctx)
@@ -127,19 +141,32 @@ protected:
       switch (ctx->type)
       {
       case LABEL_CT:
+        data = ObjMsgDataString::create(
+            host->origin_id, ctx->name, lv_label_get_text(ctx->obj));
+        host->produce(data);
+        break;
       case TEXTAREA_CT:
+        data = ObjMsgDataString::create(
+            host->origin_id, ctx->name, lv_textarea_get_text(ctx->obj));
+        host->produce(data);
+        break;
+      case SLIDER_CT:
+        data = ObjMsgDataInt::create(
+            host->origin_id, ctx->name, lv_slider_get_value(ctx->obj));
+        host->produce(data);
+        break;
       case COMBO_CT:
       case LED_CT:
       case GAUGE_CT:
       case BUTTON_CT:
-      case SLIDER_CT:
       case SWITCH_CT:
       default:
-         ESP_LOGE(host->TAG, "produce type (%d) NOT IMPLEMENTED", ctx->type);
-         break;
+        ESP_LOGE(host->TAG, "produce type (%d) NOT IMPLEMENTED", ctx->type);
+        break;
       }
     }
-    else {
+    else
+    {
       ESP_LOGE(host->TAG, "produce event NOT REGISTERED");
     }
     // host->produce();

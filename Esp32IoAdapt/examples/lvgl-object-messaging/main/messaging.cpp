@@ -70,6 +70,9 @@ static void MessageTask(void *pvParameters)
       if (!data.get()->IsFrom(ORIGIN_WEBSOCKET)) {
         ws.consume(data);
       }
+      if (!data.get()->IsFrom(ORIGIN_LVGL)) {
+        lvgl.consume(data);
+      }
       ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data.get());
       if (jsd && jsd->GetName().compare(ZOOM_JOY_NAME) == 0)
       {

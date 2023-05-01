@@ -131,7 +131,7 @@ extern "C" void app_main(void)
     // Initialize display and LVGL
     // WARNING the display is initialized with the backlight off to launch flicker
     // Call bsp_lcd_set_brightness() expicitly to make it visible
-    lv_disp_t *disp = bsp_lcd_start();
+    lv_disp_t *disp = bsp_lcd_start(2048);
     lv_disp_set_rotation(disp, LV_DISP_ROT_90); // Landscape
 
     // Lock the display and iniitialize the SquareLine ui

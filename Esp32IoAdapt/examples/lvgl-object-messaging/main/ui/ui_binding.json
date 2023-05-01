@@ -45,7 +45,7 @@
     "ui_btnLs_con": false,
     "ui_btnLs_pro": true,
     "ui_btnLs_evt": "LV_EVENT_CLICKED",
-    "ui_sldBacklight_name": "backlight",
+    "ui_sldBacklight_name": "zoom_slider",
     "ui_sldBacklight_type": "SLIDER_CT",
     "ui_sldBacklight_con": true,
     "ui_sldBacklight_pro": true,
