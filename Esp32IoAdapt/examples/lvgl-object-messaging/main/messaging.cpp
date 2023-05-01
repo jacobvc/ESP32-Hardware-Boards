@@ -11,6 +11,8 @@
 
 #include <unordered_map>
 
+#define TAG "APP"
+
 // Pan-tilt Slider and joystick pin/channel assignments
 #define PT_SLIDER IA_GVI1_CHAN
 
@@ -67,10 +69,11 @@ static void MessageTask(void *pvParameters)
   {
     if (transport.receive(data, wait))
     {
-      if (!data.get()->IsFrom(ORIGIN_WEBSOCKET)) {
+      ObjMsgData *msg = data.get();
+      if (!msg->IsFrom(ORIGIN_WEBSOCKET)) {
         ws.consume(data);
       }
-      if (!data.get()->IsFrom(ORIGIN_LVGL)) {
+      if (!msg->IsFrom(ORIGIN_LVGL)) {
         lvgl.consume(data);
       }
       ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data.get());
@@ -85,8 +88,8 @@ static void MessageTask(void *pvParameters)
       else
       {
         string str;
-        data.get()->serializeObject(str);
-        printf("JSON: %s\n", str.c_str());
+        msg->Serialize(str);
+        ESP_LOGI(TAG, "(%02x) JSON: %s", msg->GetOrigin() , str.c_str());
       }
     }
   }

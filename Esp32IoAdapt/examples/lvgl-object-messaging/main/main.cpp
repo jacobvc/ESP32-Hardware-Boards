@@ -18,6 +18,7 @@
  */
 #include <stdio.h>
 #include "dirent.h"
+#include <string>
 #define MAX_DIR_BYTES 4096
 #define MOUNT_POINT "/sd"
 
@@ -25,6 +26,7 @@ void BtnLsClicked(lv_event_t * e)
 {
     const char *path = MOUNT_POINT;
     esp_err_t err = 0;
+    std::string s = "";
     lv_textarea_set_text(ui_txaFiles, "");
     sdmmc_card_t *card = bsp_lcd_sdcard_mount(MOUNT_POINT, &err);
     if (card)
@@ -34,14 +36,15 @@ void BtnLsClicked(lv_event_t * e)
         lv_label_set_text(ui_lblPath, path);
         while (de)
         {
-            lv_textarea_add_text(ui_txaFiles, de->d_name);
+            s += de->d_name;
             if (de->d_type == DT_DIR)
             {
-                lv_textarea_add_text(ui_txaFiles, "/");
+                s += "/";
             }
-            lv_textarea_add_text(ui_txaFiles, "\n");
+            s += "\n";
             de = readdir(dir);
         }
+      lv_textarea_set_text(ui_txaFiles, s.c_str());
         bsp_lcd_sdcard_unmount(card, MOUNT_POINT);
     }
     else

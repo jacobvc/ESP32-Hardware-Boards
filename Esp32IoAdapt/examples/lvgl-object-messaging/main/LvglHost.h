@@ -23,6 +23,7 @@ class LvglHost : public ObjMsgHost
     const char *name;
     lv_obj_t *obj;
     enum ControlType type;
+    lv_event_code_t eventCode;
   } control_reg_def_t;
 
 public:
@@ -31,20 +32,22 @@ public:
   {
   }
 
-  int addConsumer(const char *name, lv_obj_t *control, enum ControlType binding, uint32_t eventFlags)
+  int addConsumer(const char *name, lv_obj_t *control, enum ControlType binding, lv_event_code_t eventCode)
   {
-    control_reg_def_t def = {.name = name, .obj = control, .type = binding};
+    control_reg_def_t def = {.name = name, .obj = control, 
+    .type = binding, .eventCode = eventCode };
     consume_map[name] = def;
 
     return true;
   }
-  int addProducer(const char *name, lv_obj_t *control, enum ControlType binding, uint32_t eventFlags)
+  int addProducer(const char *name, lv_obj_t *control, enum ControlType binding, lv_event_code_t eventCode)
   {
-    control_reg_def_t def = {.name = name, .obj = control, .type = binding};
+    control_reg_def_t def = {.name = name, .obj = control, 
+    .type = binding, .eventCode = eventCode };
     produce_map[control] = def;
 
     // Store this object in user_data for lookup
-    lv_obj_add_event_cb(control, produce_cb, LV_EVENT_ALL, this);
+    lv_obj_add_event_cb(control, produce_cb, eventCode, this);
 
     return true;
   }
@@ -78,10 +81,11 @@ public:
         lv_textarea_set_text(ctx->obj, strVal.c_str());
         break;
       case SLIDER_CT:
-        if (msg->GetValue(intVal)) {
+        if (msg->GetValue(intVal))
+        {
           lv_slider_set_value(ctx->obj, intVal, LV_ANIM_OFF);
         }
-        else 
+        else
         {
           ESP_LOGE(TAG, "consume name (%s) value must be integer", msg->GetName().c_str());
         }
@@ -99,7 +103,7 @@ public:
     }
     else
     {
-      ESP_LOGE(TAG, "consume name (%s) NOT REGISTERED", msg->GetName().c_str());
+      ESP_LOGI(TAG, "consume name (%s) NOT REGISTERED", msg->GetName().c_str());
       return false;
     }
     return true;
@@ -138,38 +142,43 @@ protected:
     control_reg_def_t *ctx = host->GetProducer(event->target);
     if (ctx)
     {
-      switch (ctx->type)
+      if (event->code == ctx->eventCode)
       {
-      case LABEL_CT:
-        data = ObjMsgDataString::create(
-            host->origin_id, ctx->name, lv_label_get_text(ctx->obj));
-        host->produce(data);
-        break;
-      case TEXTAREA_CT:
-        data = ObjMsgDataString::create(
-            host->origin_id, ctx->name, lv_textarea_get_text(ctx->obj));
-        host->produce(data);
-        break;
-      case SLIDER_CT:
-        data = ObjMsgDataInt::create(
-            host->origin_id, ctx->name, lv_slider_get_value(ctx->obj));
-        host->produce(data);
-        break;
-      case COMBO_CT:
-      case LED_CT:
-      case GAUGE_CT:
-      case BUTTON_CT:
-      case SWITCH_CT:
-      default:
-        ESP_LOGE(host->TAG, "produce type (%d) NOT IMPLEMENTED", ctx->type);
-        break;
+        switch (ctx->type)
+        {
+        case LABEL_CT:
+          data = ObjMsgDataString::create(
+              host->origin_id, ctx->name, lv_label_get_text(ctx->obj));
+          host->produce(data);
+          break;
+        case TEXTAREA_CT:
+          data = ObjMsgDataString::create(
+              host->origin_id, ctx->name, lv_textarea_get_text(ctx->obj));
+          host->produce(data);
+          break;
+        case SLIDER_CT:
+          data = ObjMsgDataInt::create(
+              host->origin_id, ctx->name, lv_slider_get_value(ctx->obj));
+          host->produce(data);
+          break;
+        case COMBO_CT:
+        case LED_CT:
+        case GAUGE_CT:
+        case BUTTON_CT:
+        case SWITCH_CT:
+        default:
+          ESP_LOGE(host->TAG, "produce type (%d) NOT IMPLEMENTED", ctx->type);
+          break;
+        }
+      }
+      else {
+        printf("Ignoring \"%s\" event %d\n", ctx->name, event->code);
       }
     }
     else
     {
       ESP_LOGE(host->TAG, "produce event NOT REGISTERED");
     }
-    // host->produce();
   }
 
   std::unordered_map<std::string, control_reg_def_t> consume_map;
