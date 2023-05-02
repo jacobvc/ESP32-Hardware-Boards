@@ -1,3 +1,7 @@
+/** LvglBinding.cpp
+ * Generated using ESP-Object-Messaging: tools/ui_bind.py. Do not edit manually.
+ * 
+ */        
 #include "LvglHost.h"
 #include "ui/ui.h"
 #include "LvglBinding.h"
