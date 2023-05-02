@@ -22,37 +22,6 @@
 #define MAX_DIR_BYTES 4096
 #define MOUNT_POINT "/sd"
 
-void BtnLsClicked(lv_event_t * e)
-{
-    const char *path = MOUNT_POINT;
-    esp_err_t err = 0;
-    std::string s = "";
-    lv_textarea_set_text(ui_txaFiles, "");
-    sdmmc_card_t *card = bsp_lcd_sdcard_mount(MOUNT_POINT, &err);
-    if (card)
-    {
-        DIR *dir = opendir(path);
-        struct dirent *de = readdir(dir);
-        lv_label_set_text(ui_lblPath, path);
-        while (de)
-        {
-            s += de->d_name;
-            if (de->d_type == DT_DIR)
-            {
-                s += "/";
-            }
-            s += "\n";
-            de = readdir(dir);
-        }
-      lv_textarea_set_text(ui_txaFiles, s.c_str());
-        bsp_lcd_sdcard_unmount(card, MOUNT_POINT);
-    }
-    else
-    {
-        lv_label_set_text(ui_lblPath, "Can't read SD Card");
-    }
-}
-
 /***
  *      ___  ____    ____   _____           _   
  *     |_ _||___ \  / ___| |_   _|___  ___ | |_ 
@@ -99,8 +68,8 @@ void BtnSampleClicked(lv_event_t * e)
         char buf[80];
         sprintf(buf, "%f", pres);
         lv_label_set_text(ui_lblPressure, buf);
-        sprintf(buf, "%f", temp);
-        lv_label_set_text(ui_lblTemp, buf);
+//        sprintf(buf, "%f", temp);
+//        lv_label_set_text(ui_lblTemp, buf);
     }
 }
 
@@ -147,11 +116,11 @@ extern "C" void app_main(void)
     bmp280Init();
     if (!bmx280) {
         lv_label_set_text(ui_lblPressure, "BMP280 NOT FOUND");
-        lv_label_set_text(ui_lblTemp, "BMP280 NOT FOUND");
+        //lv_label_set_text(ui_lblTemp, "BMP280 NOT FOUND");
     }
 
     // Turn on backlight
-    lv_slider_set_value(ui_sldBacklight, DEFAULT_BACKLIGHT, LV_ANIM_OFF);
+    //lv_slider_set_value(ui_sldBacklight, DEFAULT_BACKLIGHT, LV_ANIM_OFF);
     bsp_lcd_set_brightness(DEFAULT_BACKLIGHT);
 
     ESP_LOGI(TAG, "Display Startup Complete.");

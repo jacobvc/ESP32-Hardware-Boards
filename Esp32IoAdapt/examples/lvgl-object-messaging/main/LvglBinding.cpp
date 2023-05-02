@@ -10,9 +10,10 @@
 void ui_binding_init(LvglHost& host)
 {
     host.addProducer("sample", ui_btnSample, BUTTON_CT, LV_EVENT_CLICKED);
-    host.addProducer("zoom", ui_txaFiles, TEXTAREA_CT, LV_EVENT_VALUE_CHANGED);
-    host.addConsumer("zoom", ui_txaFiles, TEXTAREA_CT, LV_EVENT_VALUE_CHANGED);
-    host.addProducer("ls", ui_btnLs, BUTTON_CT, LV_EVENT_PRESSED);
-    host.addProducer("zoom_slider", ui_sldBacklight, SLIDER_CT, LV_EVENT_VALUE_CHANGED);
-    host.addConsumer("zoom_slider", ui_sldBacklight, SLIDER_CT, LV_EVENT_VALUE_CHANGED);
+    host.addConsumer("sample", ui_btnSample, BUTTON_CT, LV_EVENT_CLICKED);
+    host.addConsumer("pressure", ui_lblPressure, LABEL_CT, LV_EVENT_VALUE_CHANGED);
+    host.addConsumer("zoom_slider", ui_sldZoom, SLIDER_CT, LV_EVENT_VALUE_CHANGED);
+    host.addConsumer("pantilt_slider", ui_arcPan, ARC_CT, LV_EVENT_CLICKED);
+    host.addProducer("schedule", ui_calSchedule, CALENDAR_CT, LV_EVENT_VALUE_CHANGED);
+    host.addConsumer("schedule", ui_calSchedule, CALENDAR_CT, LV_EVENT_CLICKED);
 }
