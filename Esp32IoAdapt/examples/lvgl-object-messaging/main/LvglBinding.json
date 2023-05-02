@@ -50,6 +50,6 @@
     "ui_sldBacklight_con": true,
     "ui_sldBacklight_pro": true,
     "ui_sldBacklight_evt": "LV_EVENT_VALUE_CHANGED",
-    "notes": "'Screen1' produce/consume mapping not supported\n'Label2' produce/consume mapping not supported\n'Label3' produce/consume mapping not supported\n'Label1' produce/consume mapping not supported\n'Label4' produce/consume mapping not supported\n'Label5' produce/consume mapping not supported\n'Label6' produce/consume mapping not supported\n'___initial_actions0' produce/consume mapping not supported"
+    "notes": "'Screen1' name prefix not supported\n'Label2' name prefix not supported\n'Label3' name prefix not supported\n'Label1' name prefix not supported\n'Label4' name prefix not supported\n'Label5' name prefix not supported\n'Label6' name prefix not supported\n'___initial_actions0' name prefix not supported"
   }
 }
