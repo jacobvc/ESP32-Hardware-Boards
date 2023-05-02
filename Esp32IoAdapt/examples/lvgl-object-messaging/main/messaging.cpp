@@ -3,7 +3,6 @@
 #include "JoystickHost.h"
 #include "ServoHost.h"
 #include "LvglHost.h"
-#include "binding.h"
 #include "messaging.h"
 #include "Esp32IoAdapt.h"
 
@@ -71,17 +70,17 @@ static void MessageTask(void *pvParameters)
     {
       ObjMsgData *msg = data.get();
       if (!msg->IsFrom(ORIGIN_WEBSOCKET)) {
-        ws.consume(data);
+        ws.consume(data.get());
       }
       if (!msg->IsFrom(ORIGIN_LVGL)) {
-        lvgl.consume(data);
+        lvgl.consume(data.get());
       }
       ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data.get());
       if (jsd && jsd->GetName().compare(ZOOM_JOY_NAME) == 0)
       {
         joystick_sample_t sample;
         jsd->GetRawValue(sample);
-        ObjMsgDataRef servo = ObjMsgServoData::create(
+        ObjMsgData* servo = new ObjMsgServoData(
           jsd->GetOrigin(), ZOOM_SERVO_X_NAME, sample.x);
         servos.consume(servo);
       }
@@ -164,14 +163,14 @@ void MessagingInit()
   // Test the servo
   if (0)
   {
-    ObjMsgDataRef pos = ObjMsgServoData::create(ORIGIN_CONTROLLER, 
+    ObjMsgData *pos = new ObjMsgServoData(ORIGIN_CONTROLLER, 
       ZOOM_SERVO_X_NAME, -90);
     servos.consume(pos);
     vTaskDelay(pdMS_TO_TICKS(2000));
-    pos = ObjMsgServoData::create(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 90);
+    pos = new ObjMsgServoData(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 90);
     servos.consume(pos);
     vTaskDelay(pdMS_TO_TICKS(2000));
-    pos = ObjMsgServoData::create(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 0);
+    pos = new ObjMsgServoData(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 0);
     servos.consume(pos);
   }
 
