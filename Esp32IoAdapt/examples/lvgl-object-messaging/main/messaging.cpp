@@ -1,5 +1,6 @@
 #include "ObjMsg.h"
 
+#include "GpioHost.h"
 #include "JoystickHost.h"
 #include "ServoHost.h"
 #include "LvglHost.h"
@@ -44,6 +45,7 @@
 #define ORIGIN_ADC        (1 << 3)
 #define ORIGIN_WEBSOCKET  (1 << 4)
 #define ORIGIN_LVGL       (1 << 5)
+#define ORIGIN_GPIO       (1 << 6)
 
 // Variables
 TaskHandle_t MessageTaskHandle;
@@ -53,6 +55,7 @@ ObjMsgTransport transport(MSG_QUEUE_MAX_DEPTH);
 
 // Component hosts
 AdcHost adc(transport, ORIGIN_ADC, SAMPLE_INTERVAL_MS);
+GpioHost gpio(transport, ORIGIN_GPIO);
 JoystickHost joysticks(adc, transport, ORIGIN_JOYSTICK, SAMPLE_INTERVAL_MS);
 ServoHost servos(transport, ORIGIN_SERVO);
 LvglHost lvgl(transport, ORIGIN_LVGL);
@@ -80,9 +83,8 @@ static void MessageTask(void *pvParameters)
       {
         joystick_sample_t sample;
         jsd->GetRawValue(sample);
-        ObjMsgData* servo = new ObjMsgServoData(
-          jsd->GetOrigin(), ZOOM_SERVO_X_NAME, sample.x);
-        servos.consume(servo);
+        ObjMsgServoData servo(jsd->GetOrigin(), ZOOM_SERVO_X_NAME, sample.x);
+        servos.consume(&servo);
       }
       else
       {
@@ -153,7 +155,9 @@ void MessagingInit()
     ADC_ATTEN_DB_11, ADC_BITWIDTH_12, 4096, 0, 100);
   adc.start();
 
-  ui_binding_init(lvgl);
+  gpio.start();
+
+  LvglBindingInit(lvgl);
   lvgl.start();
 
   xTaskCreate(MessageTask, "MessageTask",
@@ -163,15 +167,14 @@ void MessagingInit()
   // Test the servo
   if (0)
   {
-    ObjMsgData *pos = new ObjMsgServoData(ORIGIN_CONTROLLER, 
-      ZOOM_SERVO_X_NAME, -90);
-    servos.consume(pos);
+    ObjMsgServoData pos1(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, -90);
+    servos.consume(&pos1);
     vTaskDelay(pdMS_TO_TICKS(2000));
-    pos = new ObjMsgServoData(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 90);
-    servos.consume(pos);
+    ObjMsgServoData pos2(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 90);
+    servos.consume(&pos2);
     vTaskDelay(pdMS_TO_TICKS(2000));
-    pos = new ObjMsgServoData(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 0);
-    servos.consume(pos);
+    ObjMsgServoData pos3(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 0);
+    servos.consume(&pos3);
   }
 
   ws.Add("/", http_root_handler, false);
