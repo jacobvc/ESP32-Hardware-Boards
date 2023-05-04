@@ -38,14 +38,16 @@
 #define ZOOM_SLIDER_NAME "zoom_slider"
 #define ZOOM_SERVO_X_NAME "zoom_servo_x"
 
-// Origin IDs (bit values)
-#define ORIGIN_CONTROLLER (1 << 0)
-#define ORIGIN_JOYSTICK   (1 << 1)
-#define ORIGIN_SERVO      (1 << 2)
-#define ORIGIN_ADC        (1 << 3)
-#define ORIGIN_WEBSOCKET  (1 << 4)
-#define ORIGIN_LVGL       (1 << 5)
-#define ORIGIN_GPIO       (1 << 6)
+// Origin IDs 
+enum Origins {
+  ORIGIN_CONTROLLER,
+  ORIGIN_JOYSTICK,
+  ORIGIN_SERVO,
+  ORIGIN_ADC,
+  ORIGIN_WEBSOCKET,
+  ORIGIN_LVGL,
+  ORIGIN_GPIO,
+};
 
 // Variables
 TaskHandle_t MessageTaskHandle;
@@ -56,6 +58,7 @@ ObjMsgTransport transport(MSG_QUEUE_MAX_DEPTH);
 // Component hosts
 AdcHost adc(transport, ORIGIN_ADC, SAMPLE_INTERVAL_MS);
 GpioHost gpio(transport, ORIGIN_GPIO);
+
 JoystickHost joysticks(adc, transport, ORIGIN_JOYSTICK, SAMPLE_INTERVAL_MS);
 ServoHost servos(transport, ORIGIN_SERVO);
 LvglHost lvgl(transport, ORIGIN_LVGL);
@@ -94,48 +97,6 @@ static void MessageTask(void *pvParameters)
       }
     }
   }
-}
-
-/** HTTP root handler - serve the embedded file index.html
- * 
- * Embedded CMakefiles.txt directive: EMBED_FILES "index.html"
- */
-esp_err_t http_root_handler(httpd_req_t *req)
-{
-    extern const unsigned char index_html_start[] asm("_binary_index_html_start");
-    extern const unsigned char index_html_end[]   asm("_binary_index_html_end");
-    const size_t index_html_size = (index_html_end - index_html_start);
-    printf("index.html (%d bytes) from %p to %p\n", index_html_size, index_html_start, index_html_end);
-    httpd_resp_send(req, (const char *)index_html_start, index_html_size);
-    return ESP_OK;
-}
-
-/** HTTP favicon handler - serve the embedded file favicon.ico
- * 
- * Embedded CMakefiles.txt directive: EMBED_FILES "favicon.ico"
- */
-esp_err_t http_favicon_handler(httpd_req_t *req)
-{
-    extern const unsigned char favicon_ico_start[] asm("_binary_favicon_ico_start");
-    extern const unsigned char favicon_ico_end[]   asm("_binary_favicon_ico_end");
-    const size_t favicon_ico_size = (favicon_ico_end - favicon_ico_start);
-    printf("favicon.ico (%d bytes) from %p to %p\n", favicon_ico_size, favicon_ico_end);
-    httpd_resp_send(req, (const char *)favicon_ico_start, favicon_ico_size);
-    return ESP_OK;
-}
-
-/** HTTP joy.js handler - serve the embedded file joy.js
- * 
- * Embedded CMakefiles.txt directive: EMBED_FILES "joy.js"
- */
-esp_err_t http_joy_js_handler(httpd_req_t *req)
-{
-    extern const unsigned char joy_js_start[] asm("_binary_joy_js_start");
-    extern const unsigned char joy_js_end[]   asm("_binary_joy_js_end");
-    const size_t joy_js_size = (joy_js_end - joy_js_start);
-    printf("joy.js (%d bytes) from %p to %p\n", joy_js_size, joy_js_end);
-    httpd_resp_send(req, (const char *)joy_js_start, joy_js_size);
-    return ESP_OK;
 }
 
 void MessagingInit()
@@ -177,9 +138,7 @@ void MessagingInit()
     servos.consume(&pos3);
   }
 
-  ws.Add("/", http_root_handler, false);
-  ws.Add("/favicon.ico", http_favicon_handler, false);
-  ws.Add("/joy.js", http_joy_js_handler, false);
-
+  extern void HttpPaths(WebsocketHost& ws);
+  HttpPaths(ws);
   ws.start();
 }
