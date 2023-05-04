@@ -101,23 +101,28 @@ static void MessageTask(void *pvParameters)
 
 void MessagingInit()
 {
+  // Configure and start joysticks
   joysticks.add(PT_JOY_NAME, CHANGE_EVENT, 
     PT_JOY_CHANS[1], PT_JOY_CHANS[0], PT_JOY_PINS[2]);
   joysticks.add(ZOOM_JOY_NAME, CHANGE_EVENT, 
     ZOOM_JOY_CHANS[1], ZOOM_JOY_CHANS[0], ZOOM_JOY_PINS[2]);
   joysticks.start();
 
+  // Configure and start servos
   servos.add(ZOOM_SERVO_X_NAME, ZOOM_SERVO_X_PIN);
   servos.start();
 
+  // Configure and start ADC
   adc.Add(ZOOM_SLIDER_NAME, CHANGE_EVENT, ZOOM_SLIDER, 
     ADC_ATTEN_DB_11, ADC_BITWIDTH_12, 4096, 0, 100);
   adc.Add(PT_SLIDER_NAME, CHANGE_EVENT, PT_SLIDER, 
     ADC_ATTEN_DB_11, ADC_BITWIDTH_12, 4096, 0, 100);
   adc.start();
 
+  // Configure and start GPIO
   gpio.start();
 
+  // Configure and start lvgl
   LvglBindingInit(lvgl);
   lvgl.start();
 
@@ -125,20 +130,9 @@ void MessagingInit()
               CONFIG_ESP_MINIMAL_SHARED_STACK_SIZE + 1024, NULL,
               tskIDLE_PRIORITY, &MessageTaskHandle);
 
-  // Test the servo
-  if (0)
-  {
-    ObjMsgServoData pos1(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, -90);
-    servos.consume(&pos1);
-    vTaskDelay(pdMS_TO_TICKS(2000));
-    ObjMsgServoData pos2(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 90);
-    servos.consume(&pos2);
-    vTaskDelay(pdMS_TO_TICKS(2000));
-    ObjMsgServoData pos3(ORIGIN_CONTROLLER, ZOOM_SERVO_X_NAME, 0);
-    servos.consume(&pos3);
-  }
-
+  // Configure and start wifi / http / websocket
   extern void HttpPaths(WebsocketHost& ws);
   HttpPaths(ws);
+  // WARNING - (for now) do this last. It will not return until WiFi starts
   ws.start();
 }
