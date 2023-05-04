@@ -59,7 +59,7 @@ ObjMsgTransport transport(MSG_QUEUE_MAX_DEPTH);
 AdcHost adc(transport, ORIGIN_ADC, SAMPLE_INTERVAL_MS);
 GpioHost gpio(transport, ORIGIN_GPIO);
 
-JoystickHost joysticks(adc, transport, ORIGIN_JOYSTICK, SAMPLE_INTERVAL_MS);
+JoystickHost joysticks(adc, gpio, transport, ORIGIN_JOYSTICK, SAMPLE_INTERVAL_MS);
 ServoHost servos(transport, ORIGIN_SERVO);
 LvglHost lvgl(transport, ORIGIN_LVGL);
 WebsocketHost ws(transport, ORIGIN_WEBSOCKET);

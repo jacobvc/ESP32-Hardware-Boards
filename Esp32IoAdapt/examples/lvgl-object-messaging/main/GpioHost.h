@@ -32,6 +32,7 @@ public:
     this->mode = mode;
     this->pin = pin;
     this->flags = flags;
+    changed = 0;
   }
 
   int GetValue()
@@ -43,6 +44,7 @@ public:
   gpio_num_t pin;
   ObjMsgSample mode;
   GpioFlags flags;
+  int8_t changed; // +1, 0, -1 == on, none, off
 
   uint8_t value; // Measured value
 };
@@ -86,35 +88,37 @@ public:
     for (it = ports.begin(); it != ports.end(); it++)
     {
       GpioPort &port = it->second;
-      if (port.flags & IS_INPUT_GF) {
+      if (port.flags & IS_INPUT_GF)
+      {
         input_mask |= 1ull << port.pin;
       }
-      else {
+      else
+      {
         output_mask |= 1ull << port.pin;
       }
     }
 
     // OUTPUTS
     gpio_config_t io_conf;
-    io_conf.intr_type = GPIO_INTR_DISABLE;        //disable interrupt
-    io_conf.mode = GPIO_MODE_OUTPUT;              //set as output mode
-    io_conf.pin_bit_mask = output_mask;           //bit mask of the pins that you want to set,e.g.GPIO18/19
-    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE; //disable pull-down mode
-    io_conf.pull_up_en = GPIO_PULLUP_DISABLE;     //disable pull-up mode
-    gpio_config(&io_conf);                        //configure GPIO with the given settings
+    io_conf.intr_type = GPIO_INTR_DISABLE;        // disable interrupt
+    io_conf.mode = GPIO_MODE_OUTPUT;              // set as output mode
+    io_conf.pin_bit_mask = output_mask;           // bit mask of the pins that you want to set,e.g.GPIO18/19
+    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE; // disable pull-down mode
+    io_conf.pull_up_en = GPIO_PULLUP_DISABLE;     // disable pull-up mode
+    gpio_config(&io_conf);                        // configure GPIO with the given settings
     // INPUTS
-    io_conf.intr_type = GPIO_INTR_ANYEDGE;        //interrupt of both edges
-    io_conf.pin_bit_mask = input_mask;            //bit mask of the pins, use GPIO4/5 here
-    io_conf.mode = GPIO_MODE_INPUT;               //set as input mode    
-    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE; //disable pull-down mode
-    io_conf.pull_up_en = GPIO_PULLUP_DISABLE;     //disable pull-up mode
+    io_conf.intr_type = GPIO_INTR_ANYEDGE;        // interrupt of both edges
+    io_conf.pin_bit_mask = input_mask;            // bit mask of the pins, use GPIO4/5 here
+    io_conf.mode = GPIO_MODE_INPUT;               // set as input mode
+    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE; // disable pull-down mode
+    io_conf.pull_up_en = GPIO_PULLUP_ENABLE;     // disable pull-up mode
     gpio_config(&io_conf);
 
     if (anyChangeEvents)
     {
       event_queue = xQueueCreate(10, sizeof(void *));
       xTaskCreate(input_task, "gpio_input_task",
-        CONFIG_ESP_MINIMAL_SHARED_STACK_SIZE + 50, this, 10, NULL);
+                  CONFIG_ESP_MINIMAL_SHARED_STACK_SIZE + 50, this, 10, NULL);
 
       // install gpio isr service
       gpio_install_isr_service(0);
@@ -132,7 +136,17 @@ public:
     return true;
   }
 
-  bool measure(GpioPort *port)
+  int Measure(string name)
+  {
+    GpioPort *port = GetPort(name);
+    if (port)
+    {
+      return Measure(port);
+    }
+    return INT_MIN;
+  }
+
+  bool Measure(GpioPort *port)
   {
     // consider IS_INPUT_GF
     int level = gpio_get_level(port->pin);
@@ -141,17 +155,31 @@ public:
     {
       level = !level;
     }
-    if ((level && (flags & OFF_EVENT_GF)) || (!level && (flags & ON_EVENT_GF)))
+    if (level != port->value)
     {
-      if (level != port->value)
-      {
-        port->value = level;
-      }
+      port->changed = level > port->value ? 1 : -1;
+      port->value = level;
     }
-    return false;
+    else
+    {
+      port->changed = 0;
+    }
+    return port->value;
   }
 
 protected:
+  GpioPort *GetPort(string name)
+  {
+    unordered_map<string, GpioPort>::iterator found = ports.find(name);
+    if (found != ports.end())
+    {
+      return &found->second;
+    }
+    else
+    {
+      return NULL;
+    }
+  }
   static void input_task(void *arg)
   {
     GpioHost *host = (GpioHost *)arg;
@@ -160,7 +188,10 @@ protected:
       GpioPort *port = NULL;
       if (xQueueReceive(host->event_queue, &port, portMAX_DELAY))
       {
-        if (host->measure(port))
+        host->Measure(port);
+
+        if (((port->changed > 0) && (port->flags & OFF_EVENT_GF)) 
+          || ((port->changed < 0) && (port->flags & ON_EVENT_GF)))
         {
           ObjMsgDataRef point = ObjMsgGpioData::create(host->origin_id, port->name.c_str(), port->value);
           host->produce(point);
