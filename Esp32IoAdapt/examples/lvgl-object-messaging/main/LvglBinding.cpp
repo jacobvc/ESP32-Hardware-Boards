@@ -12,8 +12,8 @@ void LvglBindingInit(LvglHost& host)
     host.addProducer("sample", ui_btnSample, BUTTON_CT, LV_EVENT_CLICKED);
     host.addConsumer("sample", ui_btnSample, BUTTON_CT);
     host.addConsumer("pressure", ui_lblPressure, LABEL_CT);
-    host.addConsumer("zoom_slider", ui_sldZoom, SLIDER_CT);
-    host.addConsumer("pantilt_slider", ui_arcPan, ARC_CT);
+    host.addConsumer("zoom_x", ui_sldZoom, SLIDER_CT);
+    host.addConsumer("zoom_y", ui_arcPan, ARC_CT);
     host.addProducer("schedule", ui_calSchedule, CALENDAR_CT, LV_EVENT_VALUE_CHANGED);
     host.addConsumer("schedule", ui_calSchedule, CALENDAR_CT);
 }

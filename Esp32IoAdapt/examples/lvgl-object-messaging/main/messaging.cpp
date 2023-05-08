@@ -38,8 +38,9 @@
 #define ZOOM_SLIDER_NAME "zoom_slider"
 #define ZOOM_SERVO_X_NAME "zoom_servo_x"
 
-// Origin IDs 
-enum Origins {
+// Origin IDs
+enum Origins
+{
   ORIGIN_CONTROLLER,
   ORIGIN_JOYSTICK,
   ORIGIN_SERVO,
@@ -75,10 +76,12 @@ static void MessageTask(void *pvParameters)
     if (transport.receive(data, wait))
     {
       ObjMsgData *msg = data.get();
-      if (!msg->IsFrom(ORIGIN_WEBSOCKET)) {
+      if (!msg->IsFrom(ORIGIN_WEBSOCKET))
+      {
         ws.consume(data.get());
       }
-      if (!msg->IsFrom(ORIGIN_LVGL)) {
+      if (!msg->IsFrom(ORIGIN_LVGL))
+      {
         lvgl.consume(data.get());
       }
       ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data.get());
@@ -93,19 +96,37 @@ static void MessageTask(void *pvParameters)
       {
         string str;
         msg->Serialize(str);
-        ESP_LOGI(TAG, "(%02x) JSON: %s", msg->GetOrigin() , str.c_str());
+        ESP_LOGI(TAG, "(%02x) JSON: %s", msg->GetOrigin(), str.c_str());
       }
     }
   }
 }
 
+bool LvglJoystickComsumer(LvglHost *host, ObjMsgData *data)
+{
+  ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data);
+  if (jsd)
+  {
+    joystick_sample_t sample;
+    jsd->GetRawValue(sample);
+
+    ObjMsgDataInt x(jsd->GetOrigin(), (jsd->GetName() + "_x").c_str(), sample.x);
+    host->consume(&x);
+    ObjMsgDataInt y(jsd->GetOrigin(), (jsd->GetName() + "_y").c_str(), sample.y);
+    host->consume(&y);
+
+    return true;
+  }
+  return false;
+}
+
 void MessagingInit()
 {
   // Configure and start joysticks
-  joysticks.add(PT_JOY_NAME, CHANGE_EVENT, 
-    PT_JOY_CHANS[1], PT_JOY_CHANS[0], PT_JOY_PINS[2]);
-  joysticks.add(ZOOM_JOY_NAME, CHANGE_EVENT, 
-    ZOOM_JOY_CHANS[1], ZOOM_JOY_CHANS[0], ZOOM_JOY_PINS[2]);
+  joysticks.add(PT_JOY_NAME, CHANGE_EVENT,
+                PT_JOY_CHANS[1], PT_JOY_CHANS[0], PT_JOY_PINS[2]);
+  joysticks.add(ZOOM_JOY_NAME, CHANGE_EVENT,
+                ZOOM_JOY_CHANS[1], ZOOM_JOY_CHANS[0], ZOOM_JOY_PINS[2]);
   joysticks.start();
 
   // Configure and start servos
@@ -113,10 +134,10 @@ void MessagingInit()
   servos.start();
 
   // Configure and start ADC
-  adc.Add(ZOOM_SLIDER_NAME, CHANGE_EVENT, ZOOM_SLIDER, 
-    ADC_ATTEN_DB_11, ADC_BITWIDTH_12, 4096, 0, 100);
-  adc.Add(PT_SLIDER_NAME, CHANGE_EVENT, PT_SLIDER, 
-    ADC_ATTEN_DB_11, ADC_BITWIDTH_12, 4096, 0, 100);
+  adc.Add(ZOOM_SLIDER_NAME, CHANGE_EVENT, ZOOM_SLIDER,
+          ADC_ATTEN_DB_11, ADC_BITWIDTH_12, 4096, 0, 100);
+  adc.Add(PT_SLIDER_NAME, CHANGE_EVENT, PT_SLIDER,
+          ADC_ATTEN_DB_11, ADC_BITWIDTH_12, 4096, 0, 100);
   adc.start();
 
   // Configure and start GPIO
@@ -124,6 +145,7 @@ void MessagingInit()
 
   // Configure and start lvgl
   LvglBindingInit(lvgl);
+  lvgl.addVirtualConsumer(ZOOM_JOY_NAME, LvglJoystickComsumer);
   lvgl.start();
 
   xTaskCreate(MessageTask, "MessageTask",
@@ -131,7 +153,7 @@ void MessagingInit()
               tskIDLE_PRIORITY, &MessageTaskHandle);
 
   // Configure and start wifi / http / websocket
-  extern void HttpPaths(WebsocketHost& ws);
+  extern void HttpPaths(WebsocketHost & ws);
   HttpPaths(ws);
   // WARNING - (for now) do this last. It will not return until WiFi starts
   ws.start();
