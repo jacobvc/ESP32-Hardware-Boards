@@ -21,8 +21,8 @@ extern lv_obj_t * ui_btnSample;
 extern lv_obj_t * ui_Label2;
 extern lv_obj_t * ui_Label1;
 extern lv_obj_t * ui_lblPressure;
-extern lv_obj_t * ui_sldZoom;
-extern lv_obj_t * ui_arcPan;
+extern lv_obj_t * ui_arcZoomX;
+extern lv_obj_t * ui_sldZoomY;
 extern lv_obj_t * ui_calSchedule;
 extern lv_obj_t * ui____initial_actions0;
 

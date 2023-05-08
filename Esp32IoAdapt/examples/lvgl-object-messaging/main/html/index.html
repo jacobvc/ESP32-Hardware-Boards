@@ -96,6 +96,14 @@
         document.querySelector('#status').classList.remove("error")
       }
     }
+    function setDate() {
+      var d = new Date();
+      var param;
+      param = JSON.stringify( {"name": "schedule", "value": { "year": d.getFullYear(), 
+        "month": d.getMonth(), "day": d.getDate() } });
+      console.log(param);
+      ws.send(param);
+   }
     function changeSlider(elmt, value) {
       var param;
       param = JSON.stringify({ "name": elmt.id, "value": parseInt(value) });
@@ -158,6 +166,7 @@
     <div id="pantilt" class="joystick">
       <h3><center>Pan / Tilt</center></h3>
     </div>
+    <div><button type="button" onclick="setDate()">Set Calendar</button></div>
     <div id="status"></div>
   </div>
 </body>

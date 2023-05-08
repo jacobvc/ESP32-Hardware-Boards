@@ -50,6 +50,16 @@ enum Origins
   ORIGIN_GPIO,
 };
 
+const char *origins[] = {
+  "ORIGIN_CONTROLLER",
+  "ORIGIN_JOYSTICK",
+  "ORIGIN_SERVO",
+  "ORIGIN_ADC",
+  "ORIGIN_WEBSOCKET",
+  "ORIGIN_LVGL",
+  "ORIGIN_GPIO",
+};
+
 // Variables
 TaskHandle_t MessageTaskHandle;
 
@@ -76,14 +86,6 @@ static void MessageTask(void *pvParameters)
     if (transport.receive(data, wait))
     {
       ObjMsgData *msg = data.get();
-      if (!msg->IsFrom(ORIGIN_WEBSOCKET))
-      {
-        ws.consume(data.get());
-      }
-      if (!msg->IsFrom(ORIGIN_LVGL))
-      {
-        lvgl.consume(data.get());
-      }
       ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data.get());
       if (jsd && jsd->GetName().compare(ZOOM_JOY_NAME) == 0)
       {
@@ -96,12 +98,23 @@ static void MessageTask(void *pvParameters)
       {
         string str;
         msg->Serialize(str);
-        ESP_LOGI(TAG, "(%02x) JSON: %s", msg->GetOrigin(), str.c_str());
+        ESP_LOGI(TAG, "(%s) JSON: %s", origins[msg->GetOrigin()], str.c_str());
+      }
+      if (!msg->IsFrom(ORIGIN_WEBSOCKET))
+      {
+        ws.consume(data.get());
+      }
+      if (!msg->IsFrom(ORIGIN_LVGL))
+      {
+        lvgl.consume(data.get());
       }
     }
   }
 }
 
+/** Example 
+ * 
+*/
 bool LvglJoystickComsumer(LvglHost *host, ObjMsgData *data)
 {
   ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data);
@@ -110,9 +123,9 @@ bool LvglJoystickComsumer(LvglHost *host, ObjMsgData *data)
     joystick_sample_t sample;
     jsd->GetRawValue(sample);
 
-    ObjMsgDataInt x(jsd->GetOrigin(), (jsd->GetName() + "_x").c_str(), sample.x);
+    ObjMsgDataInt x(jsd->GetOrigin(), (jsd->GetName() + "x").c_str(), sample.x);
     host->consume(&x);
-    ObjMsgDataInt y(jsd->GetOrigin(), (jsd->GetName() + "_y").c_str(), sample.y);
+    ObjMsgDataInt y(jsd->GetOrigin(), (jsd->GetName() + "y").c_str(), sample.y);
     host->consume(&y);
 
     return true;

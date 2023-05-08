@@ -42,20 +42,20 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_style_border_opa(ui_lblPressure, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_width(ui_lblPressure, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_sldZoom = lv_slider_create(ui_Screen1);
-    lv_slider_set_value(ui_sldZoom, 50, LV_ANIM_OFF);
-    if(lv_slider_get_mode(ui_sldZoom) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_sldZoom, 0, LV_ANIM_OFF);
-    lv_obj_set_width(ui_sldZoom, 10);
-    lv_obj_set_height(ui_sldZoom, 100);
-    lv_obj_set_x(ui_sldZoom, 344);
-    lv_obj_set_y(ui_sldZoom, 20);
+    ui_arcZoomX = lv_arc_create(ui_Screen1);
+    lv_obj_set_width(ui_arcZoomX, 131);
+    lv_obj_set_height(ui_arcZoomX, 129);
+    lv_obj_set_x(ui_arcZoomX, 149);
+    lv_obj_set_y(ui_arcZoomX, -66);
+    lv_obj_set_align(ui_arcZoomX, LV_ALIGN_CENTER);
+    lv_arc_set_range(ui_arcZoomX, -100, 100);
 
-    ui_arcPan = lv_arc_create(ui_Screen1);
-    lv_obj_set_width(ui_arcPan, 85);
-    lv_obj_set_height(ui_arcPan, 74);
-    lv_obj_set_x(ui_arcPan, 168);
-    lv_obj_set_y(ui_arcPan, -102);
-    lv_obj_set_align(ui_arcPan, LV_ALIGN_CENTER);
+    ui_sldZoomY = lv_slider_create(ui_Screen1);
+    lv_slider_set_range(ui_sldZoomY, -100, 100);
+    lv_obj_set_width(ui_sldZoomY, 10);
+    lv_obj_set_height(ui_sldZoomY, 100);
+    lv_obj_set_x(ui_sldZoomY, 384);
+    lv_obj_set_y(ui_sldZoomY, 53);
 
     ui_calSchedule = lv_calendar_create(ui_Screen1);
     lv_obj_t * ui_calSchedule_header = lv_calendar_header_arrow_create(ui_calSchedule);

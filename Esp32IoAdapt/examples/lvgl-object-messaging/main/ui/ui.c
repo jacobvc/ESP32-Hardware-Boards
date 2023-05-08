@@ -15,8 +15,8 @@ lv_obj_t * ui_btnSample;
 lv_obj_t * ui_Label2;
 lv_obj_t * ui_Label1;
 lv_obj_t * ui_lblPressure;
-lv_obj_t * ui_sldZoom;
-lv_obj_t * ui_arcPan;
+lv_obj_t * ui_arcZoomX;
+lv_obj_t * ui_sldZoomY;
 lv_obj_t * ui_calSchedule;
 lv_obj_t * ui____initial_actions0;
 
