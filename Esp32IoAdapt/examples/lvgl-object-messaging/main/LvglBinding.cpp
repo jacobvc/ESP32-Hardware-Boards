@@ -9,13 +9,13 @@
 
 void LvglBindingInit(LvglHost& host)
 {
-    host.addProducer("sample", ui_btnSample, BUTTON_CT, LV_EVENT_CLICKED);
-    host.addConsumer("sample", ui_btnSample, BUTTON_CT);
-    host.addConsumer("pressure", ui_lblPressure, LABEL_CT);
-    host.addProducer("zoomy", ui_sldZoomY, SLIDER_CT, LV_EVENT_VALUE_CHANGED);
-    host.addConsumer("zoomy", ui_sldZoomY, SLIDER_CT);
-    host.addProducer("zoomx", ui_arcZoomX, ARC_CT, LV_EVENT_VALUE_CHANGED);
-    host.addConsumer("zoomx", ui_arcZoomX, ARC_CT);
-    host.addProducer("schedule", ui_calSchedule, CALENDAR_CT, LV_EVENT_VALUE_CHANGED);
-    host.addConsumer("schedule", ui_calSchedule, CALENDAR_CT);
+    host.AddProducer("sample", ui_btnSample, BUTTON_CT, LV_EVENT_CLICKED);
+    host.AddConsumer("sample", ui_btnSample, BUTTON_CT);
+    host.AddConsumer("pressure", ui_lblPressure, LABEL_CT);
+    host.AddProducer("zoomy", ui_sldZoomY, SLIDER_CT, LV_EVENT_VALUE_CHANGED);
+    host.AddConsumer("zoomy", ui_sldZoomY, SLIDER_CT);
+    host.AddProducer("zoomx", ui_arcZoomX, ARC_CT, LV_EVENT_VALUE_CHANGED);
+    host.AddConsumer("zoomx", ui_arcZoomX, ARC_CT);
+    host.AddProducer("schedule", ui_calSchedule, CALENDAR_CT, LV_EVENT_VALUE_CHANGED);
+    host.AddConsumer("schedule", ui_calSchedule, CALENDAR_CT);
 }
