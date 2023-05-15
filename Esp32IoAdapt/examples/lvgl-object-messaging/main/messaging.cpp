@@ -75,18 +75,22 @@ ServoHost servos(transport, ORIGIN_SERVO);
 LvglHost lvgl(transport, ORIGIN_LVGL);
 WebsocketHost ws(transport, ORIGIN_WEBSOCKET);
 
+void Forward() {
+  
+}
+
 // Implementation
 static void MessageTask(void *pvParameters)
 {
-  ObjMsgDataRef data;
+  ObjMsgDataRef dataRef;
   TickType_t wait = portMAX_DELAY;
 
   for (;;)
   {
-    if (transport.Receive(data, wait))
+    if (transport.Receive(dataRef, wait))
     {
-      ObjMsgData *msg = data.get();
-      ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data.get());
+      ObjMsgData *data = dataRef.get();
+      ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data);
       if (jsd && jsd->GetName().compare(ZOOM_JOY_NAME) == 0)
       {
         joystick_sample_t sample;
@@ -97,16 +101,16 @@ static void MessageTask(void *pvParameters)
       else
       {
         string str;
-        msg->Serialize(str);
-        ESP_LOGI(TAG, "(%s) JSON: %s", origins[msg->GetOrigin()], str.c_str());
+        data->Serialize(str);
+        ESP_LOGI(TAG, "(%s) JSON: %s", origins[data->GetOrigin()], str.c_str());
       }
-      if (!msg->IsFrom(ORIGIN_WEBSOCKET))
+      if (!data->IsFrom(ws.origin_id))
       {
-        ws.Consume(data.get());
+        ws.Consume(data);
       }
-      if (!msg->IsFrom(ORIGIN_LVGL))
+      if (!data->IsFrom(ORIGIN_LVGL))
       {
-        lvgl.Consume(data.get());
+        lvgl.Consume(data);
       }
     }
   }
@@ -123,6 +127,9 @@ bool LvglJoystickComsumer(LvglHost *host, ObjMsgData *data)
     joystick_sample_t sample;
     jsd->GetRawValue(sample);
 
+    printf("LvglJoystickComsumer: Consuming %sx = %d, %sy = %d\n",
+      jsd->GetName().c_str(), sample.x, jsd->GetName().c_str(), sample.y);
+
     ObjMsgDataInt x(jsd->GetOrigin(), (jsd->GetName() + "x").c_str(), sample.x);
     host->Consume(&x);
     ObjMsgDataInt y(jsd->GetOrigin(), (jsd->GetName() + "y").c_str(), sample.y);
@@ -130,6 +137,7 @@ bool LvglJoystickComsumer(LvglHost *host, ObjMsgData *data)
 
     return true;
   }
+  printf("LvglJoystickComsumer: NOT A CONSUMER\n");
   return false;
 }
 
