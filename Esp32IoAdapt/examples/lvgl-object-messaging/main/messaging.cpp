@@ -104,6 +104,7 @@ static void MessageTask(void *pvParameters)
         data->Serialize(str);
         ESP_LOGI(TAG, "(%s) JSON: %s", origins[data->GetOrigin()], str.c_str());
       }
+      /*
       if (!data->IsFrom(ws.origin_id))
       {
         ws.Consume(data);
@@ -112,6 +113,7 @@ static void MessageTask(void *pvParameters)
       {
         lvgl.Consume(data);
       }
+      */
     }
   }
 }
@@ -168,6 +170,7 @@ void MessagingInit()
   LvglBindingInit(lvgl);
   lvgl.AddVirtualConsumer(ZOOM_JOY_NAME, LvglJoystickComsumer);
   lvgl.Start();
+  transport.AddForward(&lvgl);
 
   xTaskCreate(MessageTask, "MessageTask",
               CONFIG_ESP_MINIMAL_SHARED_STACK_SIZE + 1024, NULL,
@@ -178,4 +181,5 @@ void MessagingInit()
   HttpPaths(ws);
   // WARNING - (for now) do this last. It will not return until WiFi starts
   ws.Start();
+  transport.AddForward(&ws);
 }
