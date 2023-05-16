@@ -75,10 +75,6 @@ ServoHost servos(transport, ORIGIN_SERVO);
 LvglHost lvgl(transport, ORIGIN_LVGL);
 WebsocketHost ws(transport, ORIGIN_WEBSOCKET);
 
-void Forward() {
-  
-}
-
 // Implementation
 static void MessageTask(void *pvParameters)
 {
@@ -104,23 +100,13 @@ static void MessageTask(void *pvParameters)
         data->Serialize(str);
         ESP_LOGI(TAG, "(%s) JSON: %s", origins[data->GetOrigin()], str.c_str());
       }
-      /*
-      if (!data->IsFrom(ws.origin_id))
-      {
-        ws.Consume(data);
-      }
-      if (!data->IsFrom(ORIGIN_LVGL))
-      {
-        lvgl.Consume(data);
-      }
-      */
     }
   }
 }
 
-/** Example 
- * 
-*/
+/** Example LVGL virtual consumer
+ *  
+ */
 bool LvglJoystickComsumer(LvglHost *host, ObjMsgData *data)
 {
   ObjMsgJoystickData *jsd = static_cast<ObjMsgJoystickData *>(data);
@@ -129,18 +115,19 @@ bool LvglJoystickComsumer(LvglHost *host, ObjMsgData *data)
     joystick_sample_t sample;
     jsd->GetRawValue(sample);
 
-    printf("LvglJoystickComsumer: Consuming %sx = %d, %sy = %d\n",
-      jsd->GetName().c_str(), sample.x, jsd->GetName().c_str(), sample.y);
-
+    // Consume sample.x as <name>x
     ObjMsgDataInt x(jsd->GetOrigin(), (jsd->GetName() + "x").c_str(), sample.x);
     host->Consume(&x);
+    // Consume sample.y as <name>y
     ObjMsgDataInt y(jsd->GetOrigin(), (jsd->GetName() + "y").c_str(), sample.y);
     host->Consume(&y);
 
     return true;
   }
-  printf("LvglJoystickComsumer: NOT A CONSUMER\n");
-  return false;
+  else {
+    LOGW("LvglJoystickComsumer", "Data is NOT ObjMsgJoystickData");
+    return false;
+  }
 }
 
 void MessagingInit()
@@ -170,6 +157,7 @@ void MessagingInit()
   LvglBindingInit(lvgl);
   lvgl.AddVirtualConsumer(ZOOM_JOY_NAME, LvglJoystickComsumer);
   lvgl.Start();
+  // Have transport forward messages to lvgl
   transport.AddForward(&lvgl);
 
   xTaskCreate(MessageTask, "MessageTask",
@@ -181,5 +169,6 @@ void MessagingInit()
   HttpPaths(ws);
   // WARNING - (for now) do this last. It will not return until WiFi starts
   ws.Start();
+  // Have transport forward messages to ws
   transport.AddForward(&ws);
 }
