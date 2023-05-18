@@ -11,7 +11,7 @@ All of the boards are designed using eagle, and any of them can be ordered in ma
 This design consists of two 15 pin pin headers; ESP32-LEFT and ESP32-RIGHT, with wires and labels corresponding to pin functionality. They are not 'connected' to one-another and are generally intended to be used as a quick start in laying out a board for one or the other side of an esp32 Dev Module. 
 
 ## ESP32 Lcd 3.5 Connectors
-This design connects one side of an esp32 Dev Module (ESP32-RIGHT) to a LCD touch screen display. The display uses all of the GPIOs on that side except two. A four pin connector supports connecting the display mounted SD socket using a shared SPI. The two unused ports are routed to a four pin I2C connector. 
+This design connects the right side of an esp32 Dev Module (ESP32-RIGHT) to a LCD touch screen display. The display uses all of the GPIOs on that side except two. A four pin connector supports connecting the display mounted SD socket using a shared SPI. The two unused ports are routed to a four pin I2C connector. 
 
 [Used with this display](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520)
 
