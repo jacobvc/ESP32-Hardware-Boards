@@ -125,7 +125,7 @@ bool LvglJoystickComsumer(LvglHost *host, ObjMsgData *data)
     return true;
   }
   else {
-    LOGW("LvglJoystickComsumer", "Data is NOT ObjMsgJoystickData");
+    ESP_LOGW("LvglJoystickComsumer", "Data is NOT ObjMsgJoystickData");
     return false;
   }
 }
