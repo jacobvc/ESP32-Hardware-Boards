@@ -1,5 +1,5 @@
 # Esp32 Relays Board
-This design utilizes the left side of an esp32 Dev Module for:
+This design utilizes the left side of an ESP32 Dev Module for:
 
 * A three channel relay board
 * A CD4066 based analog switch. Two channels of the CD4066 are connected to 3.5mm TRS (input / output) audio connectors, and the other two are available on a pair of 0.1 in center 3 pin headers.
