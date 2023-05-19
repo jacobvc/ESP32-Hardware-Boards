@@ -1,6 +1,10 @@
 # IO Adapter Boards
-EspIoAdapt is a ESP-32 "LEFT_SIDE" board that present th I/O pins on the left side of 
+EspIoAdapt contains a ESP-32 "LEFT_SIDE" board that present th I/O pins on the left side of 
 a ESP32 Dev Module as (mostly) JST ZH 1.5mm connectors.
+
+Joystick contains a joystick adapter a joystick to the other end of a 5 pin connector.
+
+Slider contains an adapter to mount and connect a 35mm slider potentiometer to the other end of a 3 pin connector.
 
 ## EspIoAdapt
 0.1 inch connectors
