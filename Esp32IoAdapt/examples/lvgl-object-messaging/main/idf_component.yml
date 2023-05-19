@@ -8,3 +8,6 @@ dependencies:
     git: https://github.com/utkumaden/esp-idf-bmx280
   Messaging:
     git: https://github.com/jacobvc/ESP-Object-Messaging
+  Esp32IoAdapt:
+    path: Esp32IoAdapt/src
+    git: https://github.com/jacobvc/ESP32-Hardware-Boards
