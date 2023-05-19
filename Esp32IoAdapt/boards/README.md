@@ -1,4 +1,6 @@
 # IO Adapter Boards
+EspIoAdapt is a ESP-32 "LEFT_SIDE" board that present th I/O pins on the left side of 
+a ESP32 Dev Module as (mostly) JST ZH 1.5mm connectors.
 
 ## EspIoAdapt
 0.1 inch connectors
@@ -22,7 +24,14 @@ Intended to be used with pre-built JST-ZH cables.
 ![Cable](/assets/s-l300.jpg)
 
 ## Joystick Adapter
+A simple adapter board adapting straight through from 1.5 mm to 0.1 inch. Intended to connect thumb joystick via JST ZH connector 
+or soldered wires from JST ZH cable.
+
 ![Joystick adapter](/assets/joystickadapt.png "Joystick adapter")
 
 ## Slider Adapter
+A simple adapter / mounting board for mounting a 35 mm slider potentiometer and connecting via JST ZH connector 
+or soldered wires from JST ZH cable.
+
+![Slider](/assets/35mmSlider.png "Slider")
 ![Slider adapter](/assets/slideradapt.png "Slider adapter")
