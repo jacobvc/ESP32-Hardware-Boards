@@ -1,5 +1,6 @@
-# Left Side IO Adapter
+# IO Adapter Boards
 
+## EspIoAdapt
 0.1 inch connectors
 * 1 each 2 pin GS connector  (switch)
 * 1 each 3 pin GVS connector (servo motor, etc). 
@@ -19,3 +20,9 @@ Note:
 ![Bottom Side](/assets/Esp32IoAdaptBottom.png "Bottom View")
 Intended to be used with pre-built JST-ZH cables. 
 ![Cable](/assets/s-l300.jpg)
+
+## Joystick Adapter
+![Joystick adapter](/assets/joystickadapt.png "Joystick adapter")
+
+## Slider Adapter
+![Slider adapter](/assets/slideradapt.png "Slider adapter")
