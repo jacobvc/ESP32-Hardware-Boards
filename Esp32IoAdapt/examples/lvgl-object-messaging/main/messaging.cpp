@@ -28,6 +28,9 @@
 // Servo pin assignments
 #define ZOOM_SERVO_X_PIN IA_GVS1_PIN
 
+// LED Output pins
+#define LED_OUT_PINS IA_GVSS1_PINS
+
 // Sample intervals
 #define SAMPLE_INTERVAL_MS 100
 
@@ -37,6 +40,11 @@
 #define ZOOM_JOY_NAME "zoom"
 #define ZOOM_SLIDER_NAME "zoom_slider"
 #define ZOOM_SERVO_X_NAME "zoom_servo_x"
+
+// Define LED for WebsocketHost
+#define WEBSOCK_LED LED_OUT_PINS[0] // GPIO_NUM_NC to not use
+
+#define USE_LVGL
 
 // Origin IDs
 enum Origins
@@ -72,8 +80,10 @@ GpioHost gpio(transport, ORIGIN_GPIO);
 
 JoystickHost joysticks(adc, gpio, transport, ORIGIN_JOYSTICK, SAMPLE_INTERVAL_MS);
 ServoHost servos(transport, ORIGIN_SERVO);
+#ifdef USE_LVGL
 LvglHost lvgl(transport, ORIGIN_LVGL);
-WebsocketHost ws(transport, ORIGIN_WEBSOCKET);
+#endif
+WebsocketHost ws(transport, ORIGIN_WEBSOCKET, WEBSOCK_LED, false);
 
 // Implementation
 static void MessageTask(void *pvParameters)
@@ -93,6 +103,11 @@ static void MessageTask(void *pvParameters)
         jsd->GetRawValue(sample);
         ObjMsgServoData servo(jsd->GetOrigin(), ZOOM_SERVO_X_NAME, sample.x);
         servos.Consume(&servo);
+        ObjMsgDataInt x(jsd->GetOrigin(), "zoom_led", sample.x > 0);
+        gpio.Consume(&x);
+        ObjMsgDataInt y(jsd->GetOrigin(), "zoom_y", sample.y > 0);
+        gpio.Consume(&y);
+
       }
       else
       {
@@ -151,16 +166,20 @@ void MessagingInit()
   adc.Start();
 
   // Configure and start GPIO
+  gpio.Add("zoom_led", LED_OUT_PINS[0], POLLING, DEFAULT_GF);
+  gpio.Add("zoom_y", LED_OUT_PINS[1], POLLING, DEFAULT_GF);
   gpio.Start();
 
   // Configure and start lvgl
+  #ifdef USE_LVGL
   LvglBindingInit(lvgl);
   lvgl.AddVirtualConsumer(ZOOM_JOY_NAME, LvglJoystickComsumer);
   lvgl.Start();
   // Have transport forward messages to lvgl
   transport.AddForward(&lvgl);
+  #endif
 
-  xTaskCreate(MessageTask, "MessageTask",
+   xTaskCreate(MessageTask, "MessageTask",
               CONFIG_ESP_MINIMAL_SHARED_STACK_SIZE + 1024, NULL,
               tskIDLE_PRIORITY, &MessageTaskHandle);
 

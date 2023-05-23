@@ -100,6 +100,7 @@ void SldBacklightChanged(lv_event_t * e)
  */
 extern "C" void app_main(void)
 {
+  #if 1
     // Initialize display and LVGL
     // WARNING the display is initialized with the backlight off to launch flicker
     // Call bsp_lcd_set_brightness() expicitly to make it visible
@@ -124,6 +125,6 @@ extern "C" void app_main(void)
     bsp_lcd_set_brightness(DEFAULT_BACKLIGHT);
 
     ESP_LOGI(TAG, "Display Startup Complete.");
-
+#endif
     MessagingInit();
 }
