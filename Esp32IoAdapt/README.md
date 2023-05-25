@@ -2,7 +2,7 @@
 
 A relatively small footprint approach to make the I/O pins on the "LEFT_SIDE" of a ESP32 Dev Module available.
 
-Consists of curcuit board designs, a header file, and examples.
+Consists of circuit board designs, a (src) header file, and examples.
 
 ## Boards
 An Esp32IoAdapt board, supported by two other trivial boards to ease connectivity with thumb joysticks and slider potentiometers.
@@ -53,3 +53,4 @@ The Esp32IoAdapt.h header file, presented as a component
 
 # Examples
 Example applications
+![examples](https://github.com/jacobvc/ESP-Object-Messaging)
