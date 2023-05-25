@@ -7,12 +7,12 @@ Consists of circuit board designs, a (src) header file, and examples.
 ## Boards
 An Esp32IoAdapt board, supported by two other trivial boards to ease connectivity with thumb joysticks and slider potentiometers.
 
-Esp32IoAdapt contains a ESP-32 "LEFT_SIDE" board that present the I/O pins on the left side of 
+**Esp32IoAdapt** contains a ESP-32 "LEFT_SIDE" board that present the I/O pins on the left side of 
 a ESP32 Dev Module as (mostly) JST ZH 1.5mm connectors.
 
-Joystick contains a joystick adapter a joystick to the other end of a 5 pin connector.
+**Joystick** contains a joystick adapter a joystick to the other end of a 5 pin connector.
 
-Slider contains an adapter to mount and connect a 35mm slider potentiometer to the other end of a 3 pin connector.
+**Slider** contains an adapter to mount and connect a 35mm slider potentiometer to the other end of a 3 pin connector.
 
 ### Esp32IoAdapt
 0.1 inch connectors
