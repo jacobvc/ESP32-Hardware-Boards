@@ -49,8 +49,8 @@ or soldered wires from JST ZH cable.
 ![Slider adapter](/assets/slideradapt.png "Slider adapter")
 
 ## src
-The Esp32IoAdapt.h header file, presented as a component
+src contains the Esp32IoAdapt.h header file, presented as a component
 
 # Examples
-Example applications
-![examples](https://github.com/jacobvc/ESP-Object-Messaging)
+[Esp32IoAdapt is used for the examples](https://github.com/jacobvc/ESP-Object-Messaging/tree/main/examples) in ESP-Object-Messaging.
+
