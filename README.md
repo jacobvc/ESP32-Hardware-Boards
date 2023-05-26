@@ -10,12 +10,12 @@ All of the boards are designed using eagle, and any of them can be ordered in ma
 ## Esp32 Dev Module Pins
 This design consists of two 15 pin pin headers; ESP32-LEFT and ESP32-RIGHT, with wires and labels corresponding to pin functionality. They are not 'connected' to one-another and are generally intended to be used as a quick start in laying out a board for one or the other side of an ESP32 Dev Module. 
 
-## ESP32 Lcd 3.5 Connectors
+## [ESP32 Lcd 3.5 Connectors](Lcd3.5Connectors)
 This design connects the right side of an ESP32 Dev Module (ESP32-RIGHT) to a LCD touch screen display. The display uses all of the GPIOs on that side except two. A four pin connector supports connecting the display mounted SD socket using a shared SPI. The two unused ports are routed to a four pin I2C connector. 
 
 [Used with this display](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520)
 
-## ESP32 I/O Adapter
+## [ESP32 I/O Adapter](Esp32IoAdapt)
 This design connects the left side of an ESP32 Dev Module to JST ZH 1.5mm keyed connectors. 
 
 The connectors include
@@ -32,7 +32,7 @@ JST ZH 1.5mm keyed connectors.
 Note:
 *  GVS.. == Ground / 3v3 / Sense GPIO
 *  GVI.. == Ground / 3v3 / Input only GPIO
-## ESP32 Audio / Relay Adapter
+## [ESP32 Audio / Relay Adapter](Esp32Relays)
 This design connects left side of an esp32 Dev Module to:
 * A three channel relay board
 * A CD4066 based analog switch. Two channels of the CD4066 are connected to 3.5mm TRS (input / output) audio connectors, and the other two are available on a pair of 0.1 in center 3 pin headers.
